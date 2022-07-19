@@ -78,7 +78,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   .279, //just like you define in pubspec.yaml file
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 12),
+              padding: EdgeInsets.only(top: 18),
               child: Text(
                 'Bibiliotheca',
                 style: TextStyle(
