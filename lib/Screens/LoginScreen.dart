@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
-
+import 'package:bibliotheca/Components/blueButton.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id ='/login';
@@ -19,11 +19,14 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Login',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 36,
-                fontFamily: 'Montserrat',
+            const Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: Text('Login',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 36,
+                  fontFamily: 'Montserrat',
+                ),
               ),
             ),
             Container(
@@ -36,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(40),),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 25),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -60,26 +63,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * .066,
+                      blueButton(
+                        text: "SIGN IN",
                         width: MediaQuery.of(context).size.width * .748,
-                        child: const Card(
-                          color: Color(0xff545ad8),
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20),),
-                          ),
-                          child: Center(
-                            child: Text('SIGN IN',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
                       ),
                       const Text('Haven’t Registered Yet?',
                         style: TextStyle(
@@ -100,5 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
     ),);
   }
 }
+
+
 
 
