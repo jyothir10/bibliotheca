@@ -85,14 +85,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   color: Colors.black,
                   fontSize: 32,
                   fontFamily: 'Montserrat',
-                  shadows: [
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(0, 4),
-                      blurRadius: 4,
-                      spreadRadius: 0,
-                    ),
-                  ],
                 ),
               ),
             ),
