@@ -1,6 +1,7 @@
 import 'package:bibliotheca/Screens/LoginScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
+import 'package:bibliotheca/Screens/bg.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,11 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: OnboardingScreen.id,
+        initialRoute: bg.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
+          bg.id: (context) => bg(),
         });
   }
 }
