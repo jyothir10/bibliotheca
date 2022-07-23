@@ -1,5 +1,4 @@
 import 'dart:math' as math;
-
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
 import 'package:bibliotheca/Components/blueButton.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,12 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class RegistrationScreenState extends State<RegistrationScreen> {
+  String branch = "EEE";
+  String batch = "2k20";
+  var branches = ['EEE', 'EC', 'CE', 'CSE', 'ME'];
+  var batches = ['2k19','2k20','2k21','2k22'];
+
+
   WidgetMarker selectedCard = WidgetMarker.one;
   bool isChecked1 = false;
   String? password;
@@ -76,14 +81,13 @@ class RegistrationScreenState extends State<RegistrationScreen> {
               ),
             ],
           ),
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  alignment: Alignment.topLeft,
-                  margin: const EdgeInsets.only(left: 35, top: 100),
-                  child: const Text(
+          SafeArea(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Text(
                     'Registration',
                     style: TextStyle(
                         color: Color(0xff000000),
@@ -93,17 +97,19 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                         fontWeight: FontWeight.normal,
                         height: 1),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 100),
-                  child: Card(
-                    elevation: 5,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(33))),
-                    child: getCustomCard(),
+                  Container(
+                    child: Card(
+                      elevation: 5,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(33),
+                        ),
+                      ),
+                      child: getCustomCard(),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
@@ -122,9 +128,8 @@ class RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget cardOne() {
     return Container(
-      margin: const EdgeInsets.only(top: 15),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-      height: 400,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+      height: 380,
       width: 5 * MediaQuery.of(context).size.width / 6,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -136,16 +141,97 @@ class RegistrationScreenState extends State<RegistrationScreen> {
             onchanged: (value) {},
           ),
           LoginScreenTextField(
-            text: "Email",
-            type: TextInputType.name,
+            text: "Admission No",
+            type: TextInputType.number,
             obscure: false,
             onchanged: (value) {},
           ),
-          LoginScreenTextField(
-            text: "Batch",
-            type: TextInputType.name,
-            obscure: false,
-            onchanged: (value) {},
+          Container(
+          margin: const EdgeInsets.only(top: 18),
+          height: MediaQuery.of(context).size.height * .066,
+          width: MediaQuery.of(context).size.width * .748,
+          decoration: BoxDecoration(
+            color: Color(0xffc8cdd3),
+            borderRadius: BorderRadius.circular(8),
+          ),
+
+          child: Center(
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                value: branch,
+                iconSize: 22,
+                icon: const Icon(
+                  Icons.keyboard_arrow_down_outlined,
+                  color: Color(0xff2b4f70),
+                ),
+                style: const TextStyle(
+                  color: Color(0xff2b4f70),
+                  fontSize: 18,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w500,
+                ),
+                items: branches.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items,style: const TextStyle(
+                      color: Color(0xff2b4f70),
+                      fontSize: 18,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
+                    ),),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  setState(() {
+                    branch = value!;
+                  });
+                },
+              ),
+            ),
+          ),
+        ),
+          Container(
+            margin: const EdgeInsets.only(top: 18),
+            height: MediaQuery.of(context).size.height * .066,
+            width: MediaQuery.of(context).size.width * .748,
+            decoration: BoxDecoration(
+              color: Color(0xffc8cdd3),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Center(
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton(
+                  value: batch,
+                  iconSize: 22,
+                  icon: const Icon(
+                    Icons.keyboard_arrow_down_outlined,
+                    color: Color(0xff2b4f70),
+                  ),
+                  style: const TextStyle(
+                    color: Color(0xff2b4f70),
+                    fontSize: 18,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w500,
+                  ),
+                  items: batches.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items,style: const TextStyle(
+                        color: Color(0xff2b4f70),
+                        fontSize: 18,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500,
+                      ),),
+                    );
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      batch = value!;
+                    });
+                  },
+                ),
+              ),
+            ),
           ),
           const Spacer(),
           InkWell(
@@ -160,7 +246,11 @@ class RegistrationScreenState extends State<RegistrationScreen> {
               child: BlueButton(
                 text: "Continue",
                 width: MediaQuery.of(context).size.width * .546,
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    selectedCard = WidgetMarker.two;
+                  });
+                },
               ),
             ),
           ),
@@ -172,9 +262,8 @@ class RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget cardTwo() {
     return Container(
-      margin: const EdgeInsets.only(top: 15),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-      height: 450,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+      height: 430,
       width: 5 * MediaQuery.of(context).size.width / 6,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -324,3 +413,5 @@ class RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 }
+
+
