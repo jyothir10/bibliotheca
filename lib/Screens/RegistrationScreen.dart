@@ -88,7 +88,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                   MediaQuery
                       .of(context)
                       .viewInsets
-                      .bottom == 0 ? Text(
+                      .bottom == 0 ? const Text(
                     'Registration',
                     style: TextStyle(
                         color: Color(0xff000000),
