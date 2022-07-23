@@ -1,10 +1,10 @@
+import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
 import 'package:bibliotheca/Screens/DashBoardScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';
@@ -29,73 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.white,
         body: Stack(
           children: [
-            Container(
-              width: 414,
-              height: 896,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                      top: 155,
-                      left: -80,
-                      child: Container(
-                          width: 212,
-                          height: 204,
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(
-                                84, 90, 216, 0.10000000149011612),
-                            borderRadius:
-                                BorderRadius.all(Radius.elliptical(212, 204)),
-                          ))),
-                  Positioned(
-                      top: 262,
-                      left: 286,
-                      child: Container(
-                          width: 205,
-                          height: 211,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(
-                                      0, 0, 0, 0.25999999046325684),
-                                  offset: Offset(0, 4),
-                                  blurRadius: 4)
-                            ],
-                            color: Color(0xFF545AD8).withOpacity(0.90),
-                            borderRadius:
-                                BorderRadius.all(Radius.elliptical(205, 211)),
-                          ))),
-                  Positioned(
-                    top: 0,
-                    left: 49,
-                    child: Container(
-                        width: 365,
-                        height: 204,
-                        child: SvgPicture.asset("images/Group 108.svg")),
-                  ),
-                  MediaQuery.of(context).viewInsets.bottom == 0
-                      ? Positioned(
-                          bottom: 50,
-                          right: -10,
-                          child: Opacity(
-                            opacity: 0.95,
-                            child: Container(
-                              width: 150,
-                              height: 150,
-                              decoration: const BoxDecoration(
-                                color: Color.fromRGBO(63, 100, 174, 0.56),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(100)),
-                              ),
-                            ),
-                          ),
-                        )
-                      : Container(),
-                ],
-              ),
-            ),
+            Background(),
             SafeArea(
               child: Center(
                 child: SingleChildScrollView(
