@@ -18,6 +18,7 @@ class LoginScreenTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(top: 18),
       height: MediaQuery.of(context).size.height * .066,
       width: MediaQuery.of(context).size.width * .748,
       child: TextField(
