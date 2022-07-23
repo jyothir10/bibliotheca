@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
 import 'package:bibliotheca/Components/blueButton.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ class RegistrationScreenState extends State<RegistrationScreen> {
   String? password;
   String? password2;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +40,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                     decoration: BoxDecoration(
                       color: const Color(0xFF545AD8).withOpacity(0.70),
                       borderRadius:
-                      const BorderRadius.all(Radius.elliptical(219, 251)),
+                          const BorderRadius.all(Radius.elliptical(219, 251)),
                     ),
                   ),
                 ),
@@ -55,8 +55,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                     height: 150,
                     decoration: const BoxDecoration(
                       color: Color.fromRGBO(63, 100, 174, 0.56),
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(100)),
+                      borderRadius: BorderRadius.all(Radius.circular(100)),
                     ),
                   ),
                 ),
@@ -71,9 +70,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                     height: 200,
                     decoration: const BoxDecoration(
                         color: Color(0xFFD8DAFF),
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(100))
-                    ),
+                        borderRadius: BorderRadius.all(Radius.circular(100))),
                   ),
                 ),
               ),
@@ -85,25 +82,24 @@ class RegistrationScreenState extends State<RegistrationScreen> {
               children: [
                 Container(
                   alignment: Alignment.topLeft,
-                  margin: const EdgeInsets.only(left: 35,top: 100),
+                  margin: const EdgeInsets.only(left: 35, top: 100),
                   child: const Text(
                     'Registration',
                     style: TextStyle(
                         color: Color(0xff000000),
                         fontSize: 38,
                         letterSpacing:
-                        0 /*percentages not used in flutter. defaulting to zero*/,
+                            0 /*percentages not used in flutter. defaulting to zero*/,
                         fontWeight: FontWeight.normal,
                         height: 1),
                   ),
                 ),
                 Container(
-                  margin:const EdgeInsets.only(top: 100) ,
+                  margin: const EdgeInsets.only(top: 100),
                   child: Card(
                     elevation: 5,
                     shape: const RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(33))),
+                        borderRadius: BorderRadius.all(Radius.circular(33))),
                     child: getCustomCard(),
                   ),
                 ),
@@ -137,19 +133,19 @@ class RegistrationScreenState extends State<RegistrationScreen> {
             text: "Name",
             type: TextInputType.name,
             obscure: false,
-            onchanged: (value){},
+            onchanged: (value) {},
           ),
           LoginScreenTextField(
             text: "Email",
             type: TextInputType.name,
             obscure: false,
-            onchanged: (value){},
+            onchanged: (value) {},
           ),
           LoginScreenTextField(
             text: "Batch",
             type: TextInputType.name,
             obscure: false,
-            onchanged: (value){},
+            onchanged: (value) {},
           ),
           const Spacer(),
           InkWell(
@@ -161,9 +157,10 @@ class RegistrationScreenState extends State<RegistrationScreen> {
             },
             child: Container(
               margin: const EdgeInsets.only(top: 26),
-              child: blueButton(
+              child: BlueButton(
                 text: "Continue",
                 width: MediaQuery.of(context).size.width * .546,
+                onTap: () {},
               ),
             ),
           ),
@@ -186,19 +183,19 @@ class RegistrationScreenState extends State<RegistrationScreen> {
             text: "Username",
             type: TextInputType.name,
             obscure: false,
-            onchanged: (value){},
+            onchanged: (value) {},
           ),
           LoginScreenTextField(
             text: "Password",
             type: TextInputType.name,
             obscure: false,
-            onchanged: (value){},
+            onchanged: (value) {},
           ),
           LoginScreenTextField(
             text: "Re-enter Password",
             type: TextInputType.name,
             obscure: false,
-            onchanged: (value){},
+            onchanged: (value) {},
           ),
           Container(
             margin: const EdgeInsets.only(top: 40),
