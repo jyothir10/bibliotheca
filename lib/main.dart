@@ -1,3 +1,4 @@
+import 'package:bibliotheca/Screens/DashBoardScreen.dart';
 import 'package:bibliotheca/Screens/LoginScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
@@ -22,12 +23,13 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.id,
+        initialRoute: DashBoardScreen.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
           RegistrationScreen.id: (context) => RegistrationScreen(),
+          DashBoardScreen.id: (context) => DashBoardScreen(),
           bg.id: (context) => bg(),
         });
   }

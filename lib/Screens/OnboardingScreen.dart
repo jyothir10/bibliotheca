@@ -1,6 +1,7 @@
 import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/WhiteButton.dart';
 import 'package:bibliotheca/Screens/LoginScreen.dart';
+import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -54,6 +55,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   width: MediaQuery.of(context).size.width * .5,
                   onTap: () {
                     //todo: nav to registering
+                    Navigator.pushReplacementNamed(
+                        context, RegistrationScreen.id);
                   },
                 ),
                 Padding(
