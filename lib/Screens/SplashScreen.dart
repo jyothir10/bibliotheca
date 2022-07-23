@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bibliotheca/Screens/LoginScreen.dart';
+import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
     var _duration = Duration(seconds: 4);
     return Timer(_duration, () {
       //Navigate to another screen or anyOther function, like i set duration 4 sec so this function run after 4 sec
-      Navigator.pushReplacementNamed(context, LoginScreen.id);
+      Navigator.pushReplacementNamed(context, OnboardingScreen.id);
     });
   }
 
@@ -73,11 +73,14 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              "images/bibliotheca.svg",
-              width: MediaQuery.of(context).size.width * .6739,
-              height: MediaQuery.of(context).size.height *
-                  .279, //just like you define in pubspec.yaml file
+            Hero(
+              tag: "logo",
+              child: SvgPicture.asset(
+                "images/bibliotheca.svg",
+                width: MediaQuery.of(context).size.width * .6739,
+                height: MediaQuery.of(context).size.height *
+                    .279, //just like you define in pubspec.yaml file
+              ),
             ),
             const Padding(
               padding: EdgeInsets.only(top: 18),

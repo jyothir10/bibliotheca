@@ -25,11 +25,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Column(
               children: [
-                SvgPicture.asset(
-                  "images/logo.svg",
-                  width: MediaQuery.of(context).size.width * .6739,
-                  height: MediaQuery.of(context).size.height *
-                      .279, //just like you define in pubspec.yaml file
+                Hero(
+                  tag: "logo",
+                  child: SvgPicture.asset(
+                    "images/logo.svg",
+                    width: MediaQuery.of(context).size.width * .6739,
+                    height: MediaQuery.of(context).size.height *
+                        .279, //just like you define in pubspec.yaml file
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 18),
