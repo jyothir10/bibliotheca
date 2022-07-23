@@ -1,19 +1,19 @@
+import 'package:bibliotheca/constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreenTextField extends StatelessWidget {
-
   final String text;
   final void Function(String)? onchanged;
   final TextInputType type;
   final bool obscure;
 
-  const LoginScreenTextField({
-    Key? key,
-    required this.text,
-    required this.onchanged,
-    required this.type,
-    required this.obscure
-  }) : super(key: key);
+  const LoginScreenTextField(
+      {Key? key,
+      required this.text,
+      required this.onchanged,
+      required this.type,
+      required this.obscure})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +22,7 @@ class LoginScreenTextField extends StatelessWidget {
       height: MediaQuery.of(context).size.height * .066,
       width: MediaQuery.of(context).size.width * .748,
       child: TextField(
+        cursorColor: primaryColour,
         obscureText: obscure,
         onChanged: onchanged,
         keyboardType: type,
