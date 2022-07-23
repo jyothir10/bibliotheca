@@ -64,6 +64,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 204,
                       child: SvgPicture.asset("images/Group 108.svg")),
                 ),
+                MediaQuery.of(context).viewInsets.bottom == 0
+                    ? Positioned(
+                        bottom: 50,
+                        right: -10,
+                        child: Opacity(
+                          opacity: 0.95,
+                          child: Container(
+                            width: 150,
+                            height: 150,
+                            decoration: const BoxDecoration(
+                              color: Color.fromRGBO(63, 100, 174, 0.56),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(100)),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
               ],
             ),
           ),
