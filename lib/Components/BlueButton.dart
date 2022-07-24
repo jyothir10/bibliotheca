@@ -17,7 +17,7 @@ class BlueButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 50,
+        height: MediaQuery.of(context).size.height * .066,
         width: width,
         child: Card(
           color: primaryColour,
