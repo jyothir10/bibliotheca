@@ -1,5 +1,6 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BottomBar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/DashBoardCard.dart';
@@ -28,6 +29,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     }
     return Future.value(true);
   }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
