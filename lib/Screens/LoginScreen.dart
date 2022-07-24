@@ -21,9 +21,34 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordcontroller = TextEditingController();
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailcontroller.text.trim(),
-        password: passwordcontroller.text.trim());
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailcontroller.text.trim(),
+          password: passwordcontroller.text.trim());
+    } on FirebaseException catch (e) {
+      print(e.code);
+      if (e.code == "user-not-found") {
+        _scaffoldKey.currentState?.showSnackBar(
+          const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 1),
+            content: Text(
+              "User does not exist !",
+            ),
+          ),
+        );
+      } else {
+        _scaffoldKey.currentState?.showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 1),
+            content: Text(
+              e.message.toString(),
+            ),
+          ),
+        );
+      }
+    }
   }
 
   @override
