@@ -1,6 +1,7 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
+import 'package:bibliotheca/Screens/DashBoardScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailcontroller.text.trim(),
           password: passwordcontroller.text.trim());
+      Navigator.pushReplacementNamed(context, DashBoardScreen.id);
     } on FirebaseException catch (e) {
       print(e.code);
       if (e.code == "user-not-found") {
