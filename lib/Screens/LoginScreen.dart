@@ -1,9 +1,9 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
-import 'package:bibliotheca/Screens/DashBoardScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,6 +19,12 @@ class _LoginScreenState extends State<LoginScreen> {
   String mail = "", password = "";
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailcontroller.text.trim(),
+        password: passwordcontroller.text.trim());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,8 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     //todo:sign in
                                     if (mail.isNotEmpty &&
                                         password.isNotEmpty) {
-                                      Navigator.pushReplacementNamed(
-                                          context, DashBoardScreen.id);
+                                      signIn();
                                     } else {
                                       _scaffoldKey.currentState?.showSnackBar(
                                           const SnackBar(
@@ -121,7 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    //todo:Go to register
                                     Navigator.pushReplacementNamed(
                                         context, RegistrationScreen.id);
                                   },

@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
+import 'package:bibliotheca/Screens/DashBoardScreen.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +23,15 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController passwordcontroller1 = TextEditingController();
 
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailcontroller.text.trim(),
-        password: passwordcontroller.text.trim());
+  Future signUp() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailcontroller.text.trim(),
+          password: passwordcontroller.text.trim());
+    } on FirebaseException catch (e) {
+      print(e);
+    }
+    Navigator.pushReplacementNamed(context, DashBoardScreen.id);
   }
 
   @override
@@ -231,8 +237,13 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                       child: InkWell(
                                         //highlightColor: Color(),
                                         onTap: () {
-                                          Navigator.pushNamed(
-                                              context, '/tree_reg');
+                                          if (emailcontroller.text.isNotEmpty &&
+                                              passwordcontroller
+                                                  .text.isNotEmpty &&
+                                              passwordcontroller.text ==
+                                                  passwordcontroller1.text) {
+                                            signUp();
+                                          }
                                         },
                                         child: Container(
                                           width: 0.45 *
