@@ -22,21 +22,32 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController passwordcontroller1 = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Future signUp() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailcontroller.text.trim(),
           password: passwordcontroller.text.trim());
+      Navigator.pushReplacementNamed(context, DashBoardScreen.id);
     } on FirebaseException catch (e) {
       print(e);
+      _scaffoldKey.currentState?.showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 1),
+          content: Text(
+            e.message.toString(),
+          ),
+        ),
+      );
     }
-    Navigator.pushReplacementNamed(context, DashBoardScreen.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
       body: Stack(
         children: <Widget>[
@@ -243,6 +254,15 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                               passwordcontroller.text ==
                                                   passwordcontroller1.text) {
                                             signUp();
+                                          } else {
+                                            _scaffoldKey.currentState
+                                                ?.showSnackBar(const SnackBar(
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
+                                                    duration:
+                                                        Duration(seconds: 1),
+                                                    content: Text(
+                                                        "Please enter valid gmail and password")));
                                           }
                                         },
                                         child: Container(
