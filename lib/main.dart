@@ -4,8 +4,11 @@ import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
+import 'package:bibliotheca/Screens/due_payment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'Screens/contact_us_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,13 +26,15 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.id,
+        initialRoute: ContactUs.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
           RegistrationScreen.id: (context) => RegistrationScreen(),
           RegistrationScreen2.id: (context) => RegistrationScreen2(),
+          ContactUs.id: (context) => ContactUs(),
+          DuePaymentScreen.id: (context) => DuePaymentScreen(),
           DashBoardScreen.id: (context) => DashBoardScreen(),
         });
   }
