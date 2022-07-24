@@ -17,6 +17,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   String mail = "", password = "";
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -69,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 LoginScreenTextField(
+                                  mycontroller: emailcontroller,
                                   text: "College mail",
                                   type: TextInputType.name,
                                   obscure: false,
@@ -77,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   },
                                 ),
                                 LoginScreenTextField(
+                                  mycontroller: passwordcontroller,
                                   text: "Password",
                                   type: TextInputType.name,
                                   obscure: true,

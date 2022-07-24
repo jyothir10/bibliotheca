@@ -1,8 +1,9 @@
 import 'dart:math' as math;
+
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
 import 'package:bibliotheca/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 
 class RegistrationScreen2 extends StatefulWidget {
   static const String id = '/reg2';
@@ -14,10 +15,18 @@ class RegistrationScreen2 extends StatefulWidget {
 }
 
 class RegistrationScreen2State extends State<RegistrationScreen2> {
-
   bool isChecked1 = false;
   String? password;
   String? password2;
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  TextEditingController passwordcontroller1 = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailcontroller.text.trim(),
+        password: passwordcontroller.text.trim());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +47,7 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                     decoration: BoxDecoration(
                       color: const Color(0xFF545AD8).withOpacity(0.70),
                       borderRadius:
-                      const BorderRadius.all(Radius.elliptical(219, 251)),
+                          const BorderRadius.all(Radius.elliptical(219, 251)),
                     ),
                   ),
                 ),
@@ -77,26 +86,24 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
           SafeArea(
             child: Center(
               child: Column(
-                crossAxisAlignment: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom == 0 ? CrossAxisAlignment.start : CrossAxisAlignment
-                    .center,
+                crossAxisAlignment:
+                    MediaQuery.of(context).viewInsets.bottom == 0
+                        ? CrossAxisAlignment.start
+                        : CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MediaQuery
-                      .of(context)
-                      .viewInsets
-                      .bottom == 0 ? const Text(
-                    'Registration',
-                    style: TextStyle(
-                        color: Color(0xff000000),
-                        fontSize: 38,
-                        letterSpacing:
-                        0 /*percentages not used in flutter. defaulting to zero*/,
-                        fontWeight: FontWeight.normal,
-                        height: 1),
-                  ) : Container(),
+                  MediaQuery.of(context).viewInsets.bottom == 0
+                      ? const Text(
+                          'Registration',
+                          style: TextStyle(
+                              color: Color(0xff000000),
+                              fontSize: 38,
+                              letterSpacing:
+                                  0 /*percentages not used in flutter. defaulting to zero*/,
+                              fontWeight: FontWeight.normal,
+                              height: 1),
+                        )
+                      : Container(),
                   Container(
                     child: Card(
                       elevation: 5,
@@ -108,26 +115,26 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                       child: Container(
                         padding: const EdgeInsets.all(12),
                         height: 420,
-                        width: 5 * MediaQuery
-                            .of(context)
-                            .size
-                            .width / 6,
+                        width: 5 * MediaQuery.of(context).size.width / 6,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             LoginScreenTextField(
+                              mycontroller: emailcontroller,
                               text: "Email",
                               type: TextInputType.emailAddress,
                               obscure: false,
                               onchanged: (value) {},
                             ),
                             LoginScreenTextField(
+                              mycontroller: passwordcontroller,
                               text: "Password",
                               type: TextInputType.name,
                               obscure: true,
                               onchanged: (value) {},
                             ),
                             LoginScreenTextField(
+                              mycontroller: passwordcontroller1,
                               text: "Re-enter Password",
                               type: TextInputType.name,
                               obscure: false,
@@ -142,10 +149,8 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                       margin: const EdgeInsets.only(bottom: 18),
                                       color: const Color(0xff311B92),
                                       child: SizedBox(
-                                        width: 0.65 * MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width,
+                                        width: 0.65 *
+                                            MediaQuery.of(context).size.width,
                                         height: 0.7,
                                       ),
                                     ),
@@ -159,8 +164,8 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                         isChecked1 = value!;
                                       });
                                     },
-                                    controlAffinity: ListTileControlAffinity
-                                        .leading,
+                                    controlAffinity:
+                                        ListTileControlAffinity.leading,
                                     title: const Text(
                                       'I acknowledge that i have read and agree to the above terms and conditions.',
                                       maxLines: 2,
@@ -186,15 +191,13 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                         });
                                       },
                                       child: Container(
-                                        width: 0.45 * MediaQuery
-                                            .of(context)
-                                            .size
-                                            .width,
+                                        width: 0.45 *
+                                            MediaQuery.of(context).size.width,
                                         height: 51,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              8),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                           boxShadow: const [
                                             BoxShadow(
                                               color: Color(0x3f000000),
@@ -232,15 +235,13 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                               context, '/tree_reg');
                                         },
                                         child: Container(
-                                          width: 0.45 * MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width,
+                                          width: 0.45 *
+                                              MediaQuery.of(context).size.width,
                                           height: 51,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                8),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                             boxShadow: const [
                                               BoxShadow(
                                                 color: Color(0x3f000000),
@@ -282,6 +283,3 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
     );
   }
 }
-
-
-
