@@ -1,5 +1,7 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BottomBar.dart';
+import 'package:bibliotheca/Screens/contact_us_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/DashBoardCard.dart';
@@ -28,6 +30,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     }
     return Future.value(true);
   }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +87,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       DashBoardCard(
                         img: "images/dashboard/help.svg",
                         text: 'Help & Support',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, ContactUs.id);
+                        },
                       ),
                     ],
                   ),

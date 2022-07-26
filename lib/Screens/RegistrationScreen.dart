@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
 import 'package:bibliotheca/Components/blueButton.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,8 @@ class RegistrationScreenState extends State<RegistrationScreen> {
   String batch = "2k20";
   var branches = ['EEE', 'EC', 'CE', 'CSE', 'ME'];
   var batches = ['2k19', '2k20', '2k21', '2k22'];
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController admnocontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                     decoration: BoxDecoration(
                       color: const Color(0xFF545AD8).withOpacity(0.70),
                       borderRadius:
-                      const BorderRadius.all(Radius.elliptical(219, 251)),
+                          const BorderRadius.all(Radius.elliptical(219, 251)),
                     ),
                   ),
                 ),
@@ -78,26 +81,24 @@ class RegistrationScreenState extends State<RegistrationScreen> {
           SafeArea(
             child: Center(
               child: Column(
-                crossAxisAlignment: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom == 0 ? CrossAxisAlignment.start : CrossAxisAlignment
-                    .center,
+                crossAxisAlignment:
+                    MediaQuery.of(context).viewInsets.bottom == 0
+                        ? CrossAxisAlignment.start
+                        : CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MediaQuery
-                      .of(context)
-                      .viewInsets
-                      .bottom == 0 ? const Text(
-                    'Registration',
-                    style: TextStyle(
-                        color: Color(0xff000000),
-                        fontSize: 38,
-                        letterSpacing:
-                        0 /*percentages not used in flutter. defaulting to zero*/,
-                        fontWeight: FontWeight.normal,
-                        height: 1),
-                  ) : Container(),
+                  MediaQuery.of(context).viewInsets.bottom == 0
+                      ? Text(
+                          'Registration',
+                          style: TextStyle(
+                              color: Color(0xff000000),
+                              fontSize: 38,
+                              letterSpacing:
+                                  0 /*percentages not used in flutter. defaulting to zero*/,
+                              fontWeight: FontWeight.normal,
+                              height: 1),
+                        )
+                      : Container(),
                   Container(
                     child: Card(
                       elevation: 5,
@@ -109,19 +110,18 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                       child: Container(
                         padding: const EdgeInsets.all(12),
                         height: 400,
-                        width: 5 * MediaQuery
-                            .of(context)
-                            .size
-                            .width / 6,
+                        width: 5 * MediaQuery.of(context).size.width / 6,
                         child: Column(
                           children: [
                             LoginScreenTextField(
+                              mycontroller: namecontroller,
                               text: "Name",
                               type: TextInputType.name,
                               obscure: false,
                               onchanged: (value) {},
                             ),
                             LoginScreenTextField(
+                              mycontroller: admnocontroller,
                               text: "Admission No",
                               type: TextInputType.name,
                               obscure: false,
@@ -130,15 +130,11 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                             Container(
                               margin: const EdgeInsets.only(top: 20),
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * .748,
+                              width: MediaQuery.of(context).size.width * .748,
                               decoration: BoxDecoration(
                                 color: Color(0xffc8cdd3),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-
                               child: Center(
                                 child: DropdownButtonHideUnderline(
                                   child: DropdownButton(
@@ -158,12 +154,14 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                       return DropdownMenuItem(
                                         value: items,
                                         child: Text(
-                                          items, style: const TextStyle(
-                                          color: Color(0xff2b4f70),
-                                          fontSize: 18,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w500,
-                                        ),),
+                                          items,
+                                          style: const TextStyle(
+                                            color: Color(0xff2b4f70),
+                                            fontSize: 18,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
                                       );
                                     }).toList(),
                                     onChanged: (String? value) {
@@ -178,10 +176,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                             Container(
                               margin: const EdgeInsets.only(top: 20),
                               height: 45,
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * .748,
+                              width: MediaQuery.of(context).size.width * .748,
                               decoration: BoxDecoration(
                                 color: Color(0xffc8cdd3),
                                 borderRadius: BorderRadius.circular(8),
@@ -205,12 +200,14 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                       return DropdownMenuItem(
                                         value: items,
                                         child: Text(
-                                          items, style: const TextStyle(
-                                          color: Color(0xff2b4f70),
-                                          fontSize: 18,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w500,
-                                        ),),
+                                          items,
+                                          style: const TextStyle(
+                                            color: Color(0xff2b4f70),
+                                            fontSize: 18,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
                                       );
                                     }).toList(),
                                     onChanged: (String? value) {
@@ -227,20 +224,20 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                               splashColor: const Color(0xff1E88E5),
                               onTap: () {
                                 setState(() {
-                                  Navigator.pushNamed(context, RegistrationScreen2.id);
+                                  Navigator.pushNamed(
+                                      context, RegistrationScreen2.id);
                                 });
                               },
                               child: Container(
                                 margin: const EdgeInsets.only(top: 28),
                                 child: BlueButton(
                                   text: "Continue",
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width * .546,
+                                  width:
+                                      MediaQuery.of(context).size.width * .546,
                                   onTap: () {
-                                    setState((){
-                                      Navigator.pushNamed(context, RegistrationScreen2.id);
+                                    setState(() {
+                                      Navigator.pushNamed(
+                                          context, RegistrationScreen2.id);
                                     });
                                   },
                                 ),

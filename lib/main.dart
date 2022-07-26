@@ -3,12 +3,15 @@ import 'package:bibliotheca/Screens/LoginScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
-import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
+import 'package:bibliotheca/Screens/contact_us_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
           RegistrationScreen.id: (context) => RegistrationScreen(),
           RegistrationScreen2.id: (context) => RegistrationScreen2(),
           DashBoardScreen.id: (context) => DashBoardScreen(),
-          ReissueBookScreen.id: (context) => ReissueBookScreen(),
+          ContactUs.id: (context) => ContactUs(),
         });
   }
 }
