@@ -1,6 +1,6 @@
-import 'package:bibliotheca/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:bibliotheca/Components/Background.dart';
+import 'package:bibliotheca/Components/ReissueBookCard.dart';
 
 class ReissueBookScreen extends StatefulWidget {
   static const String id = '/reissue';
@@ -18,27 +18,44 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
         children: [
           Background(),
           SafeArea(
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(Icons.arrow_back),
-                  const Text(
-                    'Reissue Book',
-                    style: TextStyle(
-                        color: Color(0xff000000),
-                        fontSize: 38,
-                        letterSpacing:
-                        0 /*percentages not used in flutter. defaulting to zero*/,
-                        fontWeight: FontWeight.normal,
-                        height: 1),
-                  ),
-                  Container(
-                    height: 100,
-
-
-                  ),
-                ],
+            child: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: InkWell(
+                        child: const Icon(Icons.arrow_back),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: const Text(
+                        'Reissue Book',
+                        style: TextStyle(
+                            color: Color(0xff000000),
+                            fontSize: 38,
+                            letterSpacing:
+                                0 /*percentages not used in flutter. defaulting to zero*/,
+                            fontWeight: FontWeight.normal,
+                            height: 1),
+                      ),
+                    ),
+                    const ReissueBookScreenCard(bookname:   'Book Name',
+                        isbn:  '978-3-16-148410-0',
+                        issueDate: '29-06-2022',
+                        dueDate: '05-07-2022'),
+                    const ReissueBookScreenCard(bookname:   'Book Name',
+                        isbn:  '978-3-16-148410-0',
+                        issueDate: '29-06-2022',
+                        dueDate: '05-07-2022'),
+                  ],
+                ),
               ),
             ),
           ),
@@ -47,3 +64,4 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
     );
   }
 }
+
