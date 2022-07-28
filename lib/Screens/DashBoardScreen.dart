@@ -1,5 +1,6 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BottomBar.dart';
+import 'package:bibliotheca/Screens/SearchScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -72,7 +73,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       DashBoardCard(
                         img: "images/dashboard/search.svg",
                         text: 'Search Books',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, SearchScreen.id);
+                        },
                       ),
                       DashBoardCard(
                         img: "images/dashboard/review.svg",
