@@ -15,77 +15,77 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 10, top: 50),
-              child: IconButton(
-                onPressed: () {},
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: () {Navigator.pop(context);
+                },
                 icon: const Icon(
                   Icons.arrow_back_rounded,
                   size: 30,
                   color: Color(0xFF545AD8),
                 ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 40, top: 20, bottom: 10),
-              child: const Text(
-                'Contact Us',
-                style: TextStyle(
-                  color: Color(0xFF0025A9),
-                  fontSize: 32,
-                  fontFamily: 'Montserrat',
+              Container(
+                margin: const EdgeInsets.only(left: 40, top: 20, bottom: 10),
+                child: const Text(
+                  'Contact Us',
+                  style: TextStyle(
+                    color: Color(0xFF0025A9),
+                    fontSize: 32,
+                    fontFamily: 'Montserrat',
+                  ),
                 ),
               ),
-            ),
-            Center(
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Transform.rotate(
-                    angle: math.pi / 2 + math.pi / 9,
-                    child: Blob.fromID(
-                      styles: BlobStyles(
-                        color: const Color(0xFF545AD8).withOpacity(0.50),
+              Center(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Transform.rotate(
+                      angle: math.pi / 2 + math.pi / 9,
+                      child: Blob.fromID(
+                        styles: BlobStyles(
+                          color: const Color(0xFF545AD8).withOpacity(0.50),
+                        ),
+                        id: const ['13-6-9822'],
+                        size: 380,
                       ),
-                      id: const ['13-6-9822'],
-                      size: 380,
                     ),
-                  ),
-                  const CircleAvatar(
-                    backgroundImage:
-                    AssetImage("images/male-call-center-operator.gif"),
-                    radius: 100,
-                  ),
-                ],
+                    const CircleAvatar(
+                      backgroundImage:
+                      AssetImage("images/male-call-center-operator.gif"),
+                      radius: 100,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const card(
+                      title: 'Phone Number',
+                      subtitle: '+91-123456789',
+                      ic: Icons.phone,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      child: const card(
+                          title: 'E-mail ID',
+                          subtitle: 'abc@gcek.ac.in',
+                          ic: Icons.email_outlined),
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const card(
-                    title: 'Phone Number',
-                    subtitle: '+91-123456789',
-                    ic: Icons.phone,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 20),
-                    child: const card(
-                        title: 'E-mail ID',
-                        subtitle: 'abc@gcek.ac.in',
-                        ic: Icons.email_outlined),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -3,14 +3,16 @@ import 'package:bibliotheca/Screens/LoginScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
+import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
-import 'package:bibliotheca/Screens/due_payment.dart';
+import 'package:bibliotheca/Screens/contact_us_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'Screens/contact_us_screen.dart';
-
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -26,16 +28,16 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: DuePaymentScreen.id,
+        initialRoute: ReissueBookScreen.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
           LoginScreen.id: (context) => LoginScreen(),
           RegistrationScreen.id: (context) => RegistrationScreen(),
           RegistrationScreen2.id: (context) => RegistrationScreen2(),
-          ContactUs.id: (context) => ContactUs(),
-          DuePaymentScreen.id: (context) => DuePaymentScreen(),
           DashBoardScreen.id: (context) => DashBoardScreen(),
+          ContactUs.id: (context) => ContactUs(),
+          ReissueBookScreen.id: (context) => ReissueBookScreen(),
         });
   }
 }

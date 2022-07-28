@@ -6,13 +6,15 @@ class LoginScreenTextField extends StatelessWidget {
   final void Function(String)? onchanged;
   final TextInputType type;
   final bool obscure;
+  final TextEditingController mycontroller;
 
-  const LoginScreenTextField(
+  LoginScreenTextField(
       {Key? key,
       required this.text,
       required this.onchanged,
       required this.type,
-      required this.obscure})
+      required this.obscure,
+      required this.mycontroller})
       : super(key: key);
 
   @override
@@ -22,6 +24,7 @@ class LoginScreenTextField extends StatelessWidget {
       height: 45,
       width: MediaQuery.of(context).size.width * .748,
       child: TextField(
+        controller: mycontroller,
         cursorColor: primaryColour,
         obscureText: obscure,
         onChanged: onchanged,
