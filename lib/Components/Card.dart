@@ -136,7 +136,7 @@ class _cardState extends State<card> {
               ),
               Container(
                 margin: const EdgeInsets.only(left: 145, bottom: 33),
-                child: BlueButton(text: 'Proceed', width: 150, onTap: () {}),
+                child: BlueButton(text: 'Proceed', width: 150, onTap: () {},Colour: 0xff545ad8,),
               )
             ],
           ),

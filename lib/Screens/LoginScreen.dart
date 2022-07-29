@@ -178,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 content: Text(
                                                     "Invalid username or password")));
                                       }
-                                    },
+                                    }, Colour: 0xff545ad8,
                                   ),
                                   InkWell(
                                     onTap: () {
