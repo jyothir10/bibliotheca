@@ -1,16 +1,16 @@
-import 'package:bibliotheca/constants.dart';
 import 'package:flutter/material.dart';
 
 class BlueButton extends StatelessWidget {
   final String text;
   final double width;
+  final int Colour;
   void Function()? onTap;
   BlueButton({
     required this.text,
     required this.width,
     required this.onTap,
-    Key? key,
-  }) : super(key: key);
+    Key? key, required this.Colour,
+ }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class BlueButton extends StatelessWidget {
         height: 50,
         width: width,
         child: Card(
-          color: primaryColour,
+          color: Color(Colour),
           elevation: 10,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
