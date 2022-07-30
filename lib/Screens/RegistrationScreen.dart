@@ -234,6 +234,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                   text: "Continue",
                                   width:
                                       MediaQuery.of(context).size.width * .546,
+                                  Colour: 0xff545ad8,
                                   onTap: () {
                                     setState(() {
                                       Navigator.pushNamed(

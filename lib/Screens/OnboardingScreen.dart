@@ -77,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       //todo: nav to registering
                       Navigator.pushReplacementNamed(
                           context, RegistrationScreen.id);
-                    },
+                    }, Colour: 0xff545ad8,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
