@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             left: 12,
             top: 48,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {Navigator.pushReplacementNamed(context, '/dashboard');},
               icon: const Icon(
                 Icons.arrow_back_rounded,
                 size: 30,

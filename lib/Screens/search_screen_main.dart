@@ -29,7 +29,7 @@ class _SearchScreenMainState extends State<SearchScreenMain> {
           left: 12,
           top: 48,
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {Navigator.pop(context, true);},
             icon: const Icon(
               Icons.arrow_back_rounded,
               size: 30,
