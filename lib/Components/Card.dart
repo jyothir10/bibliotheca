@@ -1,4 +1,8 @@
+import 'package:bibliotheca/Components/prop-value_widget.dart';
+import 'package:bibliotheca/Components/prop-value_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../constants.dart';
 import 'BlueButton.dart';
 
 class card extends StatefulWidget {
@@ -21,7 +25,7 @@ class _cardState extends State<card> {
       margin: const EdgeInsets.only(left: 22, right: 22, bottom: 20),
       child: Card(
         elevation: 7,
-        shape:RoundedRectangleBorder(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Padding(
@@ -59,76 +63,49 @@ class _cardState extends State<card> {
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(bottom: 12, left: 8, right: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          textProperty('ISBN Number:'),
-                          textValue('978-3-16-148410-0')
-                        ],
+                      margin:
+                          const EdgeInsets.only(bottom: 12, left: 8, right: 12),
+                      child: const propValueWidget(
+                        widget1: textProperty(
+                          t: 'ISBN Number:',
+                          c: black,
+                        ),
+                        widget2: textValue(
+                          t: '978-3-16-148410-0',
+                          c: black,
+                        ),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          textProperty('Issue Date: '),
-                          textValue('29-06-2022')
-                        ],
+                      child: const propValueWidget(
+                        widget1: textProperty(t: 'Issue Date: ', c: black),
+                        widget2: textValue(t: '29-06-2022', c: black),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          //color: Colors.black87,
-                          textProperty('Due Date: '),
-                          Text(
-                            '15-07-2022',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Montserrat',
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
+                      child: const propValueWidget(
+                        widget1: textProperty(t: 'Due Date: ', c: black),
+                        widget2: textValue(t: '15-07-2022', c: Colors.red),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          textProperty('Days Exceeded:'),
-                          textValue('20')
-                        ],
+                      child: const propValueWidget(
+                        widget1:  textProperty(t: 'Days Exceeded:',c: black),
+                        widget2: textValue(t: '20',c: black),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 12, left: 8, right: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Due Total:',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Montserrat',
-                              color: Color(0xFF0025A9),
-                            ),),
-                          Text(
-                            'Rs. 100',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Montserrat',
-                              color: Color(0xFF0025A9),
-                            ),),
-                        ],
+                      margin: const EdgeInsets.only(
+                          top: 12, left: 8, right: 12),
+                      child: const propValueWidget(
+                        widget1: textProperty(t: 'Due Total:',c: color1),
+                        widget2: textValue(t: 'Rs. 100',c: color1),
                       ),
                     ),
                   ],
@@ -136,7 +113,12 @@ class _cardState extends State<card> {
               ),
               Container(
                 margin: const EdgeInsets.only(left: 145, bottom: 33),
-                child: BlueButton(text: 'Proceed', width: 150, onTap: () {},Colour: 0xff545ad8,),
+                child: BlueButton(
+                  text: 'Proceed',
+                  width: 150,
+                  onTap: () {},
+                  Colour: 0xff545ad8,
+                ),
               )
             ],
           ),
@@ -146,22 +128,3 @@ class _cardState extends State<card> {
   }
 }
 
-Widget textProperty(String t) {
-  return Text(
-    t,
-    style: TextStyle(
-      fontSize: 17,
-      fontFamily: 'Montserrat',
-    ),
-  );
-}
-
-Widget textValue(String t) {
-  return Text(
-    t,
-    style: TextStyle(
-      fontSize: 15,
-      fontFamily: 'Montserrat',
-    ),
-  );
-}
