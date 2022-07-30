@@ -6,6 +6,7 @@ import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
 import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
+import 'package:bibliotheca/Screens/profile_screen.dart';
 import 'package:bibliotheca/Screens/search_screen_main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
           ContactUs.id: (context) => ContactUs(),
           ReissueBookScreen.id: (context) => ReissueBookScreen(),
           SearchScreenMain.id: (context) => SearchScreenMain(),
+          ProfileScreen.id: (context) => ProfileScreen(),
         });
   }
 }
