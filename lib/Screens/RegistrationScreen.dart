@@ -31,6 +31,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
     bool showSpinner = false;
 
     Future addStudent() async {
+      String admno = admnocontroller.text;
       setState(() {
         showSpinner = true;
       });
@@ -59,7 +60,11 @@ class RegistrationScreenState extends State<RegistrationScreen> {
       setState(() {
         showSpinner = false;
       });
-      Navigator.pushNamed(context, RegistrationScreen2.id);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => RegistrationScreen2(admno: admno)),
+      );
     }
 
     return Scaffold(

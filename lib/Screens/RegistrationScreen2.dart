@@ -3,14 +3,16 @@ import 'dart:math' as math;
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
 import 'package:bibliotheca/Screens/DashBoardScreen.dart';
 import 'package:bibliotheca/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class RegistrationScreen2 extends StatefulWidget {
   static const String id = '/reg2';
+  String? admno;
 
-  const RegistrationScreen2({Key? key}) : super(key: key);
+  RegistrationScreen2({this.admno, Key? key}) : super(key: key);
 
   @override
   RegistrationScreen2State createState() => RegistrationScreen2State();
@@ -27,6 +29,7 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   Future signUp() async {
+    print(widget.admno);
     setState(() {
       showSpinner = true;
     });
@@ -34,6 +37,9 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailcontroller.text.trim(),
           password: passwordcontroller.text.trim());
+      final student =
+          FirebaseFirestore.instance.collection('Students').doc(widget.admno);
+      student.update({'email': emailcontroller.text});
       Navigator.pushReplacementNamed(context, DashBoardScreen.id);
       setState(() {
         showSpinner = false;
