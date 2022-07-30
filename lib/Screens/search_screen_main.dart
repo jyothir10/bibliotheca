@@ -1,10 +1,11 @@
 import 'package:bibliotheca/Components/WhiteButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../Components/BlueButton.dart';
 
 class SearchScreenMain extends StatefulWidget {
-  static const String id = '/search1';
+  static const String id = '/search';
   const SearchScreenMain({Key? key}) : super(key: key);
 
   @override
@@ -60,7 +61,7 @@ class _SearchScreenMainState extends State<SearchScreenMain> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 60,bottom: 20),
+                  margin: EdgeInsets.only(top: 60, bottom: 20),
                   child: WhiteButton(
                     text: 'Book Name',
                     width: 150,
@@ -71,12 +72,20 @@ class _SearchScreenMainState extends State<SearchScreenMain> {
                   child: Row(
                     children: [
                       Container(
-                        margin:
-                            EdgeInsets.only(top: 15, right: 20,bottom: 15),
+                        margin: EdgeInsets.only(top: 15, right: 20, bottom: 15),
                         child: BlueButton(
-                            text: 'Author', width: 150, onTap: () {}, Colour: 0xff545ad8,),
+                          text: 'Author',
+                          width: 150,
+                          onTap: () {},
+                          Colour: 0xff545ad8,
+                        ),
                       ),
-                      BlueButton(text: 'Department', width: 150, onTap: () {}, Colour: 0xff545ad8,),
+                      BlueButton(
+                        text: 'Department',
+                        width: 150,
+                        onTap: () {},
+                        Colour: 0xff545ad8,
+                      ),
                     ],
                   ),
                 ),

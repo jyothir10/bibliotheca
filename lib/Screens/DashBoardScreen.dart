@@ -1,9 +1,10 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BottomBar.dart';
+import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
 import 'package:bibliotheca/Screens/due_payment.dart';
-import 'package:bibliotheca/Screens/issued_books_screen.dart';
 import 'package:bibliotheca/Screens/search_screen_main.dart';
+import 'package:bibliotheca/Screens/issued_books_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -70,12 +71,16 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       DashBoardCard(
                         img: "images/dashboard/renewal.svg",
                         text: 'Renew Book',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, ReissueBookScreen.id);
+                        },
                       ),
                       DashBoardCard(
                         img: "images/dashboard/search.svg",
                         text: 'Search Books',
-                        onTap: () {Navigator.pushNamed(context, SearchScreenMain.id);},
+                        onTap: () {
+                          Navigator.pushNamed(context, SearchScreenMain.id);
+                        },
                       ),
                       DashBoardCard(
                         img: "images/dashboard/review.svg",
@@ -85,7 +90,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       DashBoardCard(
                         img: "images/dashboard/fine.svg",
                         text: 'Pay Fine',
-                        onTap: () {Navigator.pushNamed(context, DuePaymentScreen.id);},
+                        onTap: () {
+                          Navigator.pushNamed(context, DuePaymentScreen.id);
+                        },
                       ),
                       DashBoardCard(
                         img: "images/dashboard/help.svg",

@@ -68,7 +68,8 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
               fontSize: 32,
               fontFamily: 'Montserrat',
             ),
-          ),),
+          ),
+        ),
         SingleChildScrollView(
           child: Column(
             children: [
@@ -90,9 +91,10 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
               ),
               SizedBox(height: 0.08*MediaQuery.of(context).size.height,),
               ConstrainedBox(
-                constraints:
-                    BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+                constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height - 150),
                 child: ListView(
+                  shrinkWrap: true,
                   children: const [
                     card(),
                     card(),

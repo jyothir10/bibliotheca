@@ -72,7 +72,7 @@ class _BottomBarState extends State<BottomBar> {
               'images/bottomnavigationbar/notification.svg',
               height: 23,
             ),
-            label: ' Cart',
+            label: 'Notifications',
             activeIcon: SvgPicture.asset(
               'images/bottomnavigationbar/notification1.svg',
               height: 23,
