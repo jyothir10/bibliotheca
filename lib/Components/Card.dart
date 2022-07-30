@@ -1,7 +1,8 @@
-import 'package:bibliotheca/Components/prop-value_widget.dart';
 import 'package:bibliotheca/Components/prop-value_text.dart';
+import 'package:bibliotheca/Components/prop-value_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../constants.dart';
 import 'BlueButton.dart';
 
@@ -71,7 +72,7 @@ class _cardState extends State<card> {
                           c: black,
                         ),
                         widget2: textValue(
-                          t: '978-3-16-148410-0',
+                          t: 'AC123',
                           c: black,
                         ),
                       ),
@@ -96,16 +97,16 @@ class _cardState extends State<card> {
                       margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
                       child: const propValueWidget(
-                        widget1:  textProperty(t: 'Days Exceeded:',c: black),
-                        widget2: textValue(t: '20',c: black),
+                        widget1: textProperty(t: 'Days Exceeded:', c: black),
+                        widget2: textValue(t: '20', c: black),
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(
-                          top: 12, left: 8, right: 12),
+                      margin:
+                          const EdgeInsets.only(top: 12, left: 8, right: 12),
                       child: const propValueWidget(
-                        widget1: textProperty(t: 'Due Total:',c: color1),
-                        widget2: textValue(t: 'Rs. 100',c: color1),
+                        widget1: textProperty(t: 'Due Total:', c: color1),
+                        widget2: textValue(t: 'Rs. 100', c: color1),
                       ),
                     ),
                   ],
@@ -127,4 +128,3 @@ class _cardState extends State<card> {
     );
   }
 }
-
