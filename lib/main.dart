@@ -6,6 +6,7 @@ import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
 import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
+import 'package:bibliotheca/Screens/due_payment.dart';
 import 'package:bibliotheca/Screens/profile_screen.dart';
 import 'package:bibliotheca/Screens/search_screen_main.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.id,
+        initialRoute: DashBoardScreen.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           ReissueBookScreen.id: (context) => ReissueBookScreen(),
           SearchScreenMain.id: (context) => SearchScreenMain(),
           ProfileScreen.id: (context) => ProfileScreen(),
+          DuePaymentScreen.id: (context) => DuePaymentScreen(),
         });
   }
 }

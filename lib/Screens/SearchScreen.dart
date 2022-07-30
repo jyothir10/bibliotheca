@@ -2,7 +2,7 @@ import 'package:bibliotheca/Components/Background.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
-  static const String id = '/splash';
+  static const String id = '/search1';
   const SearchScreen({Key? key}) : super(key: key);
 
   @override

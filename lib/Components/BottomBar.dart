@@ -1,4 +1,5 @@
 import 'package:bibliotheca/Screens/DashBoardScreen.dart';
+import 'package:bibliotheca/Screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,7 +17,7 @@ class _BottomBarState extends State<BottomBar> {
     DashBoardScreen.id,
     DashBoardScreen.id,
     DashBoardScreen.id,
-    DashBoardScreen.id,
+    ProfileScreen.id,
   ];
 
   void _onItemTapped(int index) {
