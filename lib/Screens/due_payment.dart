@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:bibliotheca/Components/card.dart';
 import 'dart:math' as math;
+
+import 'package:bibliotheca/Components/card.dart';
+import 'package:flutter/material.dart';
 //import 'package:intl/intl.dart';
 
 class DuePaymentScreen extends StatefulWidget {
@@ -60,9 +61,12 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                   )),
             )),
         Positioned(
-            left: 15, top: 38,
+          left: 15,
+          top: 38,
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(
               Icons.arrow_back_rounded,
               size: 30,
@@ -71,7 +75,8 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
           ),
         ),
         Positioned(
-            left: 65, top: 85,
+          left: 65,
+          top: 85,
           child: const Text(
             'Pay Fine',
             style: TextStyle(
@@ -79,15 +84,19 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
               fontSize: 32,
               fontFamily: 'Montserrat',
             ),
-          ),),
+          ),
+        ),
         SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 0.18*MediaQuery.of(context).size.height,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .18,
+              ),
               ConstrainedBox(
-                constraints:
-                    BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+                constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height - 150),
                 child: ListView(
+                  shrinkWrap: true,
                   children: const [
                     card(),
                     card(),
