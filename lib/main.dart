@@ -3,9 +3,10 @@ import 'package:bibliotheca/Screens/LoginScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
-import 'package:bibliotheca/Screens/SearchScreen.dart';
+import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
+import 'package:bibliotheca/Screens/search_screen_main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.id,
+        initialRoute:SearchScreenMain.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
           RegistrationScreen2.id: (context) => RegistrationScreen2(),
           DashBoardScreen.id: (context) => DashBoardScreen(),
           ContactUs.id: (context) => ContactUs(),
-          SearchScreen.id: (context) => SearchScreen(),
+          ReissueBookScreen.id: (context) => ReissueBookScreen(),
+          SearchScreenMain.id: (context) => SearchScreenMain(),
         });
   }
 }

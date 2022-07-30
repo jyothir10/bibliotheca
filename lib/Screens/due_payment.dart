@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bibliotheca/Components/card.dart';
 import 'dart:math' as math;
 //import 'package:intl/intl.dart';
 
@@ -11,57 +12,92 @@ class DuePaymentScreen extends StatefulWidget {
 }
 
 class DuePaymentScreenState extends State<DuePaymentScreen> {
-
   @override
   Widget build(BuildContext context) {
     //final now = new DateTime.now();
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(children: [
-        Stack(children: <Widget>[
-          Positioned(
-              top: 530,
-              left: -108,
+      body: Stack(children: <Widget>[
+        Positioned(
+            top: 530,
+            left: -108,
+            child: Container(
+                width: 215,
+                height: 224,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF545AD8).withOpacity(0.24),
+                  borderRadius:
+                      const BorderRadius.all(Radius.elliptical(215, 224)),
+                ))),
+        Positioned(
+            top: -5,
+            left: 220,
+            //342.33056640625
+            child: Transform.rotate(
+              angle: 40 * (math.pi / 180),
               child: Container(
-                  width: 215,
-                  height: 224,
+                  width: 267,
+                  height: 121,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF545AD8).withOpacity(0.24),
+                    color: const Color(0xFF445FBF).withOpacity(0.56),
                     borderRadius:
-                    const BorderRadius.all(Radius.elliptical(215, 224)),
-                  ))),
-          Positioned(
-              top: -5,
-              left: 220,
-              //342.33056640625
-              child: Transform.rotate(
-                angle: 40 * (math.pi / 180),
-                child: Container(
-                    width: 267,
-                    height: 121,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF445FBF).withOpacity(0.56),
-                      borderRadius:
-                      const BorderRadius.all(Radius.elliptical(267, 121)),
-                    )),
-              )),
-          Positioned(
-              top: -5,
-              left: 220,
-              child: Transform.rotate(
-                angle: 130 * (math.pi / 180),
-                child: Container(
-                    width: 413,
-                    height: 181,
-                    decoration: BoxDecoration(
-                      color:  const Color(0xFF545AD8).withOpacity(0.70),
-                      borderRadius:
-                      const BorderRadius.all(Radius.elliptical(413, 181)),
-                    )),
-              )),
-        ]),
-
+                        const BorderRadius.all(Radius.elliptical(267, 121)),
+                  )),
+            )),
+        Positioned(
+            top: -5,
+            left: 220,
+            child: Transform.rotate(
+              angle: 130 * (math.pi / 180),
+              child: Container(
+                  width: 413,
+                  height: 181,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF545AD8).withOpacity(0.70),
+                    borderRadius:
+                        const BorderRadius.all(Radius.elliptical(413, 181)),
+                  )),
+            )),
+        Positioned(
+            left: 15, top: 38,
+          child: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              size: 30,
+              color: Color(0xFF545AD8),
+            ),
+          ),
+        ),
+        Positioned(
+            left: 65, top: 85,
+          child: const Text(
+            'Pay Fine',
+            style: TextStyle(
+              color: Color(0xFF0025A9),
+              fontSize: 32,
+              fontFamily: 'Montserrat',
+            ),
+          ),),
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 0.18*MediaQuery.of(context).size.height,),
+              ConstrainedBox(
+                constraints:
+                    BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+                child: ListView(
+                  children: const [
+                    card(),
+                    card(),
+                    card(),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ]),
     );
   }
