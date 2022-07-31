@@ -1,15 +1,27 @@
-import 'package:flutter/material.dart';
-import 'package:bibliotheca/Components/prop-value_widget.dart';
+import 'dart:core';
+
 import 'package:bibliotheca/Components/prop-value_text.dart';
+import 'package:bibliotheca/Components/prop-value_widget.dart';
+import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
 class ibCard extends StatefulWidget {
+  String isbn;
+  String bookName;
+  String issueDate;
+  String returnDate;
   // final double width;
   // final double height;
   // final double borderRadius;
 
-  const ibCard({Key? key}) : super(key: key);
+  ibCard(
+      {required this.isbn,
+      required this.bookName,
+      required this.issueDate,
+      required this.returnDate,
+      Key? key})
+      : super(key: key);
 
   @override
   State<ibCard> createState() => _ibCardState();
@@ -35,7 +47,7 @@ class _ibCardState extends State<ibCard> {
               Container(
                 margin: EdgeInsets.only(left: 22, top: 20),
                 child: Text(
-                  'Book Name',
+                  widget.bookName,
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       fontSize: 22,
@@ -63,14 +75,14 @@ class _ibCardState extends State<ibCard> {
                   children: [
                     Container(
                       margin:
-                      const EdgeInsets.only(bottom: 12, left: 8, right: 12),
-                      child: const propValueWidget(
-                        widget1: textProperty(
+                          const EdgeInsets.only(bottom: 12, left: 8, right: 12),
+                      child: propValueWidget(
+                        widget1: const textProperty(
                           t: 'ISBN Number:',
                           c: black,
                         ),
                         widget2: textValue(
-                          t: '978-3-16-148410-0',
+                          t: widget.isbn,
                           c: black,
                         ),
                       ),
@@ -78,20 +90,20 @@ class _ibCardState extends State<ibCard> {
                     Container(
                       margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
-                      child: const propValueWidget(
-                        widget1: textProperty(t: 'Issue Date: ', c: black),
-                        widget2: textValue(t: '29-06-2022', c: black),
+                      child: propValueWidget(
+                        widget1:
+                            const textProperty(t: 'Issue Date: ', c: black),
+                        widget2: textValue(t: widget.issueDate, c: black),
                       ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
-                      child: const propValueWidget(
+                      child: propValueWidget(
                         widget1: textProperty(t: 'Due Date: ', c: black),
-                        widget2: textValue(t: '15-07-2022', c: Colors.red),
+                        widget2: textValue(t: widget.returnDate, c: Colors.red),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -102,4 +114,3 @@ class _ibCardState extends State<ibCard> {
     );
   }
 }
-
