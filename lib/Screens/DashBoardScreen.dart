@@ -4,6 +4,7 @@ import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
 import 'package:bibliotheca/Screens/due_payment.dart';
 import 'package:bibliotheca/Screens/search_screen_main.dart';
+import 'package:bibliotheca/Screens/issued_books_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -65,7 +66,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       DashBoardCard(
                         img: "images/dashboard/issue.svg",
                         text: 'Issued Books',
-                        onTap: () {},
+                        onTap: () { Navigator.pushNamed(context, IssuedBooks.id); },
                       ),
                       DashBoardCard(
                         img: "images/dashboard/renewal.svg",

@@ -7,6 +7,7 @@ import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
 import 'package:bibliotheca/Screens/due_payment.dart';
+import 'package:bibliotheca/Screens/issued_books_screen.dart';
 import 'package:bibliotheca/Screens/profile_screen.dart';
 import 'package:bibliotheca/Screens/search_screen_main.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           ReissueBookScreen.id: (context) => ReissueBookScreen(),
           SearchScreenMain.id: (context) => SearchScreenMain(),
           ProfileScreen.id: (context) => ProfileScreen(),
+          IssuedBooks.id: (context) => IssuedBooks(),
           DuePaymentScreen.id: (context) => DuePaymentScreen(),
         });
   }
