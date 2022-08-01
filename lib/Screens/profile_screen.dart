@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/prop-value_text.dart';
 import 'package:bibliotheca/Components/prop-value_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/BottomBar.dart';
@@ -30,6 +31,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     textProperty(t: 'E-mail :', c: black),
     textProperty(t: 'Phone :', c: black)
   ];
+
+  Future<void> _signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +124,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: BlueButton(
                         text: "Logout",
                         width: MediaQuery.of(context).size.width * .43,
-                        onTap: () {},
+                        onTap: () {
+                          _signOut();
+                        },
                         Colour: 0xff545ad8,
                       ),
                     )
