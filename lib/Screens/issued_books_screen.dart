@@ -16,6 +16,7 @@ class IssuedBooks extends StatefulWidget {
 
 class _IssuedBooksState extends State<IssuedBooks> {
   String? admno = "";
+  bool exist = false;
   late QueryDocumentSnapshot<Map<String, dynamic>> books;
   List<String> bookids = [];
   List<String> booknames = [];
@@ -120,6 +121,22 @@ class _IssuedBooksState extends State<IssuedBooks> {
                                               issueDate: issuedate,
                                               returnDate: returndate);
                                         }),
+                                  );
+                                } else if (index ==
+                                        snapshots.data!.docs.length - 1 &&
+                                    exist == false) {
+                                  return Flexible(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "No isssued books!",
+                                          style: dashboardTextStyle.copyWith(
+                                              fontSize: 14),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 } else {
                                   return Container();
