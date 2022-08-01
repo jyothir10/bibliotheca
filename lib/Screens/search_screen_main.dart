@@ -4,6 +4,9 @@ import 'package:bibliotheca/Screens/SearchScreen1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'SearchScreen2.dart';
+import 'SearchScreen3.dart';
+
 class SearchScreenMain extends StatefulWidget {
   static const String id = '/search';
   const SearchScreenMain({Key? key}) : super(key: key);
@@ -81,7 +84,7 @@ class _SearchScreenMainState extends State<SearchScreenMain> {
                           text: 'Author',
                           width: 150,
                           onTap: () {
-                            Navigator.pushNamed(context, SearchScreen1.id);
+                            Navigator.pushNamed(context, SearchScreen2.id);
                           },
                           Colour: 0xff545ad8,
                         ),
@@ -90,7 +93,7 @@ class _SearchScreenMainState extends State<SearchScreenMain> {
                         text: 'Department',
                         width: 150,
                         onTap: () {
-                          Navigator.pushNamed(context, SearchScreen1.id);
+                          Navigator.pushNamed(context, SearchScreen3.id);
                         },
                         Colour: 0xff545ad8,
                       ),

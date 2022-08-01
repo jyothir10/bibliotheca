@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
 import 'package:bibliotheca/Screens/DashBoardScreen.dart';
+import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -185,7 +186,7 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                 mycontroller: passwordcontroller1,
                                 text: "Re-enter Password",
                                 type: TextInputType.name,
-                                obscure: false,
+                                obscure: true,
                                 onchanged: (value) {},
                               ),
                               Container(
@@ -236,7 +237,7 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                       child: GestureDetector(
                                         onTap: () {
                                           setState(() {
-                                            Navigator.pop(context);
+                                            Navigator.pushReplacementNamed(context, RegistrationScreen.id);
                                           });
                                         },
                                         child: Container(
@@ -275,7 +276,8 @@ class RegistrationScreen2State extends State<RegistrationScreen2> {
                                     Expanded(
                                       child: GestureDetector(
                                         onTap: () {
-                                          setState(() {});
+                                          setState(() {
+                                          });
                                         },
                                         child: InkWell(
                                           //highlightColor: Color(),
