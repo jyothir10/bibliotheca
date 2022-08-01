@@ -1,5 +1,8 @@
 import 'package:bibliotheca/Components/Background.dart';
+import 'package:bibliotheca/constants.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Components/ib_card.dart';
 
@@ -12,6 +15,23 @@ class IssuedBooks extends StatefulWidget {
 }
 
 class _IssuedBooksState extends State<IssuedBooks> {
+  String? admno = "";
+  late QueryDocumentSnapshot<Map<String, dynamic>> books;
+  List<String> bookids = [];
+  List<String> booknames = [];
+  List issuedates = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
+  }
+
+  getUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    admno = prefs.getString('id');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,17 +75,60 @@ class _IssuedBooksState extends State<IssuedBooks> {
               ConstrainedBox(
                 constraints: BoxConstraints(
                     maxHeight: MediaQuery.of(context).size.height),
-                child: ListView(
-                  children: [
-                    ibCard(
-                      isbn: "AB123",
-                      bookName: "Python",
-                      issueDate: "2022-07-06",
-                      returnDate: "2022-08-06",
-                    ),
-                  ],
+                child: Container(
+                  height: 632,
+                  child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('Students')
+                        .snapshots(),
+                    builder: (context, snapshots) {
+                      return (snapshots.connectionState ==
+                              ConnectionState.waiting)
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                color: primaryColour,
+                              ),
+                            )
+                          : ListView.builder(
+                              itemCount: snapshots.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                var data = snapshots.data!.docs[index].data()
+                                    as Map<String, dynamic>;
+                                if (data['admno'] == admno) {
+                                  List l1 = data['bookid'];
+                                  List l2 = data['bookname'];
+                                  List l3 = data['issuedates'];
+
+                                  return Container(
+                                    height: 600,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ListView.builder(
+                                        itemCount: l1.length,
+                                        itemBuilder: (context, index) {
+                                          DateTime date_issue =
+                                              l3[index].toDate();
+                                          String issuedate =
+                                              "${date_issue.day}-${date_issue.month}-${date_issue.year}";
+                                          DateTime date_return = date_issue
+                                              .add(Duration(days: 15));
+                                          String returndate =
+                                              "${date_return.day}-${date_return.month}-${date_return.year}";
+
+                                          return ibCard(
+                                              isbn: l1[index],
+                                              bookName: l2[index],
+                                              issueDate: issuedate,
+                                              returnDate: returndate);
+                                        }),
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              });
+                    },
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),
