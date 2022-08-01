@@ -8,6 +8,7 @@ import 'package:bibliotheca/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';
@@ -22,16 +23,19 @@ class _LoginScreenState extends State<LoginScreen> {
   String mail = "", password = "";
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
+  TextEditingController admnocontroller = TextEditingController();
   bool showSpinner = false;
 
   Future signIn() async {
     setState(() {
       showSpinner = true;
     });
+    final prefs = await SharedPreferences.getInstance();
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailcontroller.text.trim(),
           password: passwordcontroller.text.trim());
+      await prefs.setString('id', admnocontroller.text.trim());
       Navigator.pushReplacementNamed(context, DashBoardScreen.id);
       setState(() {
         showSpinner = false;
@@ -134,6 +138,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   LoginScreenTextField(
+                                    mycontroller: admnocontroller,
+                                    text: "Admission number",
+                                    type: TextInputType.name,
+                                    obscure: false,
+                                    onchanged: (value) {
+                                      mail = value;
+                                    },
+                                  ),
+                                  LoginScreenTextField(
                                     mycontroller: emailcontroller,
                                     text: "College mail",
                                     type: TextInputType.name,
@@ -178,7 +191,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 content: Text(
                                                     "Invalid username or password")));
                                       }
-                                    }, Colour: 0xff545ad8,
+                                    },
+                                    Colour: 0xff545ad8,
                                   ),
                                   InkWell(
                                     onTap: () {

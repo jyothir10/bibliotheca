@@ -1,8 +1,8 @@
+import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/WhiteButton.dart';
+import 'package:bibliotheca/Screens/SearchScreen1.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../Components/BlueButton.dart';
 
 class SearchScreenMain extends StatefulWidget {
   static const String id = '/search';
@@ -30,7 +30,9 @@ class _SearchScreenMainState extends State<SearchScreenMain> {
           left: 12,
           top: 48,
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context, true);
+            },
             icon: const Icon(
               Icons.arrow_back_rounded,
               size: 30,
@@ -65,7 +67,9 @@ class _SearchScreenMainState extends State<SearchScreenMain> {
                   child: WhiteButton(
                     text: 'Book Name',
                     width: 150,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, SearchScreen1.id);
+                    },
                   ),
                 ),
                 Container(
@@ -76,14 +80,18 @@ class _SearchScreenMainState extends State<SearchScreenMain> {
                         child: BlueButton(
                           text: 'Author',
                           width: 150,
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, SearchScreen1.id);
+                          },
                           Colour: 0xff545ad8,
                         ),
                       ),
                       BlueButton(
                         text: 'Department',
                         width: 150,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, SearchScreen1.id);
+                        },
                         Colour: 0xff545ad8,
                       ),
                     ],

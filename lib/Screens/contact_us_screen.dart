@@ -21,7 +21,8 @@ class _ContactUsState extends State<ContactUs> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                onPressed: () {Navigator.pop(context);
+                onPressed: () {
+                  Navigator.pop(context);
                 },
                 icon: const Icon(
                   Icons.arrow_back_rounded,

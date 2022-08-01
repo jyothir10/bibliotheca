@@ -4,14 +4,20 @@ import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
 import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
+import 'package:bibliotheca/Screens/SearchScreen1.dart';
+import 'package:bibliotheca/Screens/SearchScreen2.dart';
+import 'package:bibliotheca/Screens/SearchScreen3.dart';
 import 'package:bibliotheca/Screens/SplashScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
 import 'package:bibliotheca/Screens/due_payment.dart';
+import 'package:bibliotheca/Screens/issued_books_screen.dart';
 import 'package:bibliotheca/Screens/profile_screen.dart';
 import 'package:bibliotheca/Screens/search_screen_main.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'constants.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +36,11 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
+        theme: ThemeData(
+          colorScheme: ThemeData().colorScheme.copyWith(
+                primary: primaryColour,
+              ),
+        ),
         debugShowCheckedModeBanner: false,
         initialRoute: SplashScreen.id,
         routes: {
@@ -42,7 +53,11 @@ class MyApp extends StatelessWidget {
           ContactUs.id: (context) => ContactUs(),
           ReissueBookScreen.id: (context) => ReissueBookScreen(),
           SearchScreenMain.id: (context) => SearchScreenMain(),
+          SearchScreen1.id: (context) => SearchScreen1(),
+          SearchScreen2.id: (context) => SearchScreen2(),
+          SearchScreen3.id: (context) => SearchScreen3(),
           ProfileScreen.id: (context) => ProfileScreen(),
+          IssuedBooks.id: (context) => IssuedBooks(),
           DuePaymentScreen.id: (context) => DuePaymentScreen(),
         });
   }
