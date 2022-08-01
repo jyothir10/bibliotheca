@@ -1,20 +1,20 @@
 import 'package:bibliotheca/Components/Background.dart';
+import 'package:bibliotheca/Components/ReviewBookCard.dart';
+import 'package:bibliotheca/Screens/ReviewBookScreen1.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Components/ib_card.dart';
-
-class IssuedBooks extends StatefulWidget {
-  static const String id = '/ib';
-  const IssuedBooks({Key? key}) : super(key: key);
+class ReviewBookScreen extends StatefulWidget {
+  static const String id = '/review';
+  const ReviewBookScreen({Key? key}) : super(key: key);
 
   @override
-  State<IssuedBooks> createState() => _IssuedBooksState();
+  State<ReviewBookScreen> createState() => _ReviewBookScreenState();
 }
 
-class _IssuedBooksState extends State<IssuedBooks> {
+class _ReviewBookScreenState extends State<ReviewBookScreen> {
   String? admno = "";
   bool exist = false;
   late QueryDocumentSnapshot<Map<String, dynamic>> books;
@@ -98,7 +98,6 @@ class _IssuedBooksState extends State<IssuedBooks> {
                                 if (data['admno'] == admno) {
                                   List l1 = data['bookid'];
                                   List l2 = data['bookname'];
-                                  List l3 = data['issuedates'];
 
                                   return Container(
                                     height: 600,
@@ -106,20 +105,14 @@ class _IssuedBooksState extends State<IssuedBooks> {
                                     child: ListView.builder(
                                         itemCount: l1.length,
                                         itemBuilder: (context, index) {
-                                          DateTime date_issue =
-                                              l3[index].toDate();
-                                          String issuedate =
-                                              "${date_issue.day}-${date_issue.month}-${date_issue.year}";
-                                          DateTime date_return = date_issue
-                                              .add(Duration(days: 15));
-                                          String returndate =
-                                              "${date_return.day}-${date_return.month}-${date_return.year}";
-
-                                          return ibCard(
-                                              isbn: l1[index],
-                                              bookName: l2[index],
-                                              issueDate: issuedate,
-                                              returnDate: returndate);
+                                          return ReviewBookCard(
+                                            isbn: l1[index],
+                                            bookName: l2[index],
+                                            onTap: () {
+                                              Navigator.pushNamed(context,
+                                                  ReviewBookScreen1.id);
+                                            },
+                                          );
                                         }),
                                   );
                                 } else if (index ==

@@ -1,33 +1,32 @@
 import 'dart:core';
 
+import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/prop-value_text.dart';
 import 'package:bibliotheca/Components/prop-value_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class ibCard extends StatefulWidget {
+class ReviewBookCard extends StatefulWidget {
   String isbn;
   String bookName;
-  String issueDate;
-  String returnDate;
+  void Function()? onTap;
   // final double width;
   // final double height;
   // final double borderRadius;
 
-  ibCard(
+  ReviewBookCard(
       {required this.isbn,
       required this.bookName,
-      required this.issueDate,
-      required this.returnDate,
+      required this.onTap,
       Key? key})
       : super(key: key);
 
   @override
-  State<ibCard> createState() => _ibCardState();
+  State<ReviewBookCard> createState() => _ReviewBookCardState();
 }
 
-class _ibCardState extends State<ibCard> {
+class _ReviewBookCardState extends State<ReviewBookCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -87,23 +86,11 @@ class _ibCardState extends State<ibCard> {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(
-                          top: 12, bottom: 12, left: 8, right: 12),
-                      child: propValueWidget(
-                        widget1:
-                            const textProperty(t: 'Issue Date: ', c: black),
-                        widget2: textValue(t: widget.issueDate, c: black),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(
-                          top: 12, bottom: 12, left: 8, right: 12),
-                      child: propValueWidget(
-                        widget1: textProperty(t: 'Due Date: ', c: black),
-                        widget2: textValue(t: widget.returnDate, c: Colors.red),
-                      ),
-                    ),
+                    BlueButton(
+                        text: "Review Book",
+                        width: 200,
+                        onTap: widget.onTap,
+                        Colour: 0xff545ad8),
                   ],
                 ),
               ),

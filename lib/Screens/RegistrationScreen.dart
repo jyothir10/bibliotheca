@@ -5,6 +5,7 @@ import 'package:bibliotheca/Components/blueButton.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'RegistrationScreen2.dart';
 
@@ -31,10 +32,12 @@ class RegistrationScreenState extends State<RegistrationScreen> {
     bool showSpinner = false;
 
     Future addStudent() async {
+      final prefs = await SharedPreferences.getInstance();
       String admno = admnocontroller.text;
       setState(() {
         showSpinner = true;
       });
+      await prefs.setString('id', admnocontroller.text.trim());
       final students = FirebaseFirestore.instance
           .collection('Students')
           .doc(admnocontroller.text);
