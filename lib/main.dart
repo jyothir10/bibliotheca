@@ -1,10 +1,10 @@
 import 'package:bibliotheca/Screens/DashBoardScreen.dart';
 import 'package:bibliotheca/Screens/LoginScreen.dart';
-import 'package:bibliotheca/Screens/NotificationScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
 import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
+import 'package:bibliotheca/Screens/ReviewBookScreen.dart';
 import 'package:bibliotheca/Screens/SearchScreen1.dart';
 import 'package:bibliotheca/Screens/SearchScreen2.dart';
 import 'package:bibliotheca/Screens/SearchScreen3.dart';
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
           ProfileScreen.id: (context) => ProfileScreen(),
           IssuedBooks.id: (context) => IssuedBooks(),
           DuePaymentScreen.id: (context) => DuePaymentScreen(),
-          NotificationScreen.id: (context) => NotificationScreen(),
+          ReviewBookScreen.id: (context) => ReviewBookScreen(),
         });
   }
 }

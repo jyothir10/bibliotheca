@@ -1,10 +1,11 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BottomBar.dart';
 import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
+import 'package:bibliotheca/Screens/ReviewBookScreen.dart';
 import 'package:bibliotheca/Screens/contact_us_screen.dart';
 import 'package:bibliotheca/Screens/due_payment.dart';
-import 'package:bibliotheca/Screens/search_screen_main.dart';
 import 'package:bibliotheca/Screens/issued_books_screen.dart';
+import 'package:bibliotheca/Screens/search_screen_main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -66,7 +67,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       DashBoardCard(
                         img: "images/dashboard/issue.svg",
                         text: 'Issued Books',
-                        onTap: () { Navigator.pushNamed(context, IssuedBooks.id); },
+                        onTap: () {
+                          Navigator.pushNamed(context, IssuedBooks.id);
+                        },
                       ),
                       DashBoardCard(
                         img: "images/dashboard/renewal.svg",
@@ -85,7 +88,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                       DashBoardCard(
                         img: "images/dashboard/review.svg",
                         text: 'Review Books',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, ReviewBookScreen.id);
+                        },
                       ),
                       DashBoardCard(
                         img: "images/dashboard/fine.svg",
