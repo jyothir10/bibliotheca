@@ -5,6 +5,7 @@ import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
 import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/ReviewBookScreen.dart';
+import 'package:bibliotheca/Screens/ReviewBookScreen1.dart';
 import 'package:bibliotheca/Screens/SearchScreen1.dart';
 import 'package:bibliotheca/Screens/SearchScreen2.dart';
 import 'package:bibliotheca/Screens/SearchScreen3.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
               ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.id,
+        initialRoute: ReviewBookScreen1.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           IssuedBooks.id: (context) => IssuedBooks(),
           DuePaymentScreen.id: (context) => DuePaymentScreen(),
           ReviewBookScreen.id: (context) => ReviewBookScreen(),
+          ReviewBookScreen1.id: (context) => ReviewBookScreen1(),
         });
   }
 }
