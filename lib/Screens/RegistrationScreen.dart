@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:bibliotheca/Components/LoginScreenTextfiled.dart';
 import 'package:bibliotheca/Components/blueButton.dart';
+import 'package:bibliotheca/Screens/LoginScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -95,8 +96,8 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                         height: 251,
                         decoration: BoxDecoration(
                           color: const Color(0xFF545AD8).withOpacity(0.70),
-                          borderRadius:
-                              const BorderRadius.all(Radius.elliptical(219, 251)),
+                          borderRadius: const BorderRadius.all(
+                              Radius.elliptical(219, 251)),
                         ),
                       ),
                     ),
@@ -126,7 +127,8 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                         height: 200,
                         decoration: const BoxDecoration(
                             color: Color(0xFFD8DAFF),
-                            borderRadius: BorderRadius.all(Radius.circular(100))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100))),
                       ),
                     ),
                   ),
@@ -184,7 +186,8 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                 Container(
                                   margin: const EdgeInsets.only(top: 20),
                                   height: 45,
-                                  width: MediaQuery.of(context).size.width * .748,
+                                  width:
+                                      MediaQuery.of(context).size.width * .748,
                                   decoration: BoxDecoration(
                                     color: Color(0xffc8cdd3),
                                     borderRadius: BorderRadius.circular(8),
@@ -230,7 +233,8 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                 Container(
                                   margin: const EdgeInsets.only(top: 20),
                                   height: 45,
-                                  width: MediaQuery.of(context).size.width * .748,
+                                  width:
+                                      MediaQuery.of(context).size.width * .748,
                                   decoration: BoxDecoration(
                                     color: Color(0xffc8cdd3),
                                     borderRadius: BorderRadius.circular(8),
@@ -291,9 +295,40 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                                       Colour: 0xff545ad8,
                                       onTap: () {
                                         setState(() {
-                                          addStudent();
+                                          if (namecontroller.text.isNotEmpty &&
+                                              admnocontroller.text.isNotEmpty) {
+                                            addStudent();
+                                          } else {
+                                            _scaffoldKey.currentState
+                                                ?.showSnackBar(const SnackBar(
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
+                                                    duration:
+                                                        Duration(seconds: 1),
+                                                    content: Text(
+                                                        "Please enter all the details")));
+                                          }
                                         });
                                       },
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 15),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pushReplacementNamed(
+                                          context, LoginScreen.id);
+                                    },
+                                    child: const Text(
+                                      'Already existing user?',
+                                      style: TextStyle(
+                                        color: Color(0xff2b4f70),
+                                        fontSize: 18,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ),
                                 ),

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:bibliotheca/Components/Background.dart';
-import 'package:bibliotheca/Components/NotificationCard.dart';
 import 'package:bibliotheca/Components/BottomBar.dart';
+import 'package:bibliotheca/Components/NotificationCard.dart';
+import 'package:flutter/material.dart';
 
 import 'DashBoardScreen.dart';
 
@@ -26,14 +26,17 @@ class _NotificationScreenState extends State<NotificationScreen> {
           children: [
             Background(),
             SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 20),
-                        child: Text('Notifications',
+                        child: Text(
+                          'Notifications',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 32,
@@ -49,15 +52,29 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           ),
                         ),
                       ),
-                      NotificationsCard(time: '10:12 am',details: "System Software is on 03/08/22"),
-                      NotificationsCard(time: '07:16 pm',details: "Proramming in C is on 09/08/22"),
-                      NotificationsCard(time: '17:44 am',details: "Python Programming is on 27/08/22"),
-                      NotificationsCard(time: '02:16 pm',details: "OOP using Java is on 19/09/22"),
-                      NotificationsCard(time: '22:52 am',details: "Operating System is on 23/09/22"),
+                      NotificationsCard(
+                          time: '10:12 am',
+                          details: "System Software is on 03/08/22"),
+                      NotificationsCard(
+                          time: '07:16 pm',
+                          details: "Proramming in C is on 09/08/22"),
+                      NotificationsCard(
+                          time: '17:44 am',
+                          details: "Python Programming is on 27/08/22"),
+                      NotificationsCard(
+                          time: '02:16 pm',
+                          details: "OOP using Java is on 19/09/22"),
+                      NotificationsCard(
+                          time: '22:52 am',
+                          details: "Operating System is on 23/09/22"),
+                      NotificationsCard(
+                          time: '10:12 am',
+                          details: "System Software is on 03/08/22"),
                     ],
                   ),
                 ),
               ),
+            ),
           ],
         ),
         bottomNavigationBar: BottomBar(
@@ -67,4 +84,3 @@ class _NotificationScreenState extends State<NotificationScreen> {
     );
   }
 }
-

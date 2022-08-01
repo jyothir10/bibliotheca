@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
 import 'package:blobs/blobs.dart';
+import 'package:flutter/material.dart';
 
 class ContactUs extends StatefulWidget {
   static const String id = '/contact_us';
@@ -31,7 +32,7 @@ class _ContactUsState extends State<ContactUs> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(left: 40, top: 20, bottom: 10),
+                margin: const EdgeInsets.only(left: 93, top: 20, bottom: 10),
                 child: const Text(
                   'Contact Us',
                   style: TextStyle(
@@ -57,7 +58,7 @@ class _ContactUsState extends State<ContactUs> {
                     ),
                     const CircleAvatar(
                       backgroundImage:
-                      AssetImage("images/male-call-center-operator.gif"),
+                          AssetImage("images/male-call-center-operator.gif"),
                       radius: 100,
                     ),
                   ],
@@ -72,14 +73,14 @@ class _ContactUsState extends State<ContactUs> {
                   children: [
                     const card(
                       title: 'Phone Number',
-                      subtitle: '+91-123456789',
+                      subtitle: '+91-8943308141',
                       ic: Icons.phone,
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 20),
                       child: const card(
                           title: 'E-mail ID',
-                          subtitle: 'abc@gcek.ac.in',
+                          subtitle: '19b101@gcek.ac.in',
                           ic: Icons.email_outlined),
                     ),
                   ],

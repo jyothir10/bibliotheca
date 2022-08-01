@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/ReissueBookCard.dart';
+import 'package:flutter/material.dart';
 
 class ReissueBookScreen extends StatefulWidget {
   static const String id = '/reissue';
@@ -46,12 +46,14 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
                             height: 1),
                       ),
                     ),
-                    const ReissueBookScreenCard(bookname:   'Book Name',
-                        isbn:  '978-3-16-148410-0',
+                    const ReissueBookScreenCard(
+                        bookname: 'Artificial Intelligence- A New Synthesis',
+                        isbn: 'AC123',
                         issueDate: '29-06-2022',
                         dueDate: '05-07-2022'),
-                    const ReissueBookScreenCard(bookname:   'Book Name',
-                        isbn:  '978-3-16-148410-0',
+                    const ReissueBookScreenCard(
+                        bookname: 'Modern Aspects of Classical Automata Theory',
+                        isbn: 'AB3456',
                         issueDate: '29-06-2022',
                         dueDate: '05-07-2022'),
                   ],
@@ -64,4 +66,3 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
     );
   }
 }
-
