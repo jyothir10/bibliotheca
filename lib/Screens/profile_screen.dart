@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/prop-value_text.dart';
 import 'package:bibliotheca/Components/prop-value_widget.dart';
 import 'package:flutter/material.dart';
@@ -94,22 +95,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           Positioned(
-            top: 310,
+            top: 270,
             left: 30,
             child: SafeArea(
               child: Container(
                 width: MediaQuery.of(context).size.width / 1.2,
                 height: double.maxFinite,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: property.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return profileField(
-                          w: propValueWidget(
-                        widget1: property[index],
-                        widget2: value[index],
-                      ));
-                    }),
+                child: Column(
+                  children: [
+                    ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: property.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return profileField(
+                              w: propValueWidget(
+                            widget1: property[index],
+                            widget2: value[index],
+                          ));
+                        }),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18),
+                      child: BlueButton(
+                        text: "Logout",
+                        width: MediaQuery.of(context).size.width * .43,
+                        onTap: () {},
+                        Colour: 0xff545ad8,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           )
