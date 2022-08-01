@@ -25,13 +25,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     textValue(t: 'Shruti', c: black),
     textValue(t: '19B123', c: black),
     textValue(t: 'abc@xyz.com', c: black),
-    textValue(t: '+91-123456789', c: black)
   ];
   final List<textProperty> property = <textProperty>[
     textProperty(t: 'Name :', c: black),
     textProperty(t: 'Admission No.:', c: black),
     textProperty(t: 'E-mail :', c: black),
-    textProperty(t: 'Phone :', c: black)
   ];
 
   Future<void> _signOut() async {
@@ -72,7 +70,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 358,
                     decoration: BoxDecoration(
                       color: Color(0xff545AD8).withOpacity(0.90),
-                      borderRadius: BorderRadius.all(Radius.elliptical(498, 358)),
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(498, 358)),
                     ))),
             const Positioned(
               left: 155,
@@ -114,7 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ));
                           }),
                       Padding(
-                        padding: const EdgeInsets.only(top: 18),
+                        padding: const EdgeInsets.only(top: 50),
                         child: BlueButton(
                           text: "Logout",
                           width: MediaQuery.of(context).size.width * .43,

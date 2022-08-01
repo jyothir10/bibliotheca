@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 class NotificationsCard extends StatelessWidget {
   final String time;
   final String details;
-  const NotificationsCard({Key? key, required this.time, required this.details}) : super(key: key);
+  const NotificationsCard({Key? key, required this.time, required this.details})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 17),
       child: Center(
         child: Container(
-          height: 71,
+          height: 85,
           width: MediaQuery.of(context).size.width * .8,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -30,37 +31,41 @@ class NotificationsCard extends StatelessWidget {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children:  [
-                    const Text("Due date is near !",
+                  children: [
+                    const Text(
+                      "Due date is near !",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 12,
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600,
-                      ),),
-                    Text(time,
+                      ),
+                    ),
+                    Text(
+                      time,
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 10,
                         fontFamily: 'Montserrat',
                       ),
                     ),
-
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 70),
-                  child: Text("Due date for the book $details",
+                  child: Text(
+                    "Due date for the book $details",
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 10,
                       fontFamily: 'Montserrat',
-                    ),),
+                    ),
+                  ),
                 ),
               ],
             ),

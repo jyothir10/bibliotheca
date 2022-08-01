@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:bibliotheca/constants.dart';
+import 'package:flutter/material.dart';
 
 class ReissueBookScreenCard extends StatelessWidget {
   final String bookname;
@@ -9,7 +9,10 @@ class ReissueBookScreenCard extends StatelessWidget {
 
   const ReissueBookScreenCard({
     Key? key,
-    required this.bookname, required this.isbn, required this.issueDate, required this.dueDate,
+    required this.bookname,
+    required this.isbn,
+    required this.issueDate,
+    required this.dueDate,
   }) : super(key: key);
 
   @override
@@ -43,22 +46,20 @@ class ReissueBookScreenCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text(
+              Text(
                 bookname,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 24,
+                  fontSize: 21,
                   fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: (){
-
-                    },
+                    onTap: () {},
                     child: Card(
                       elevation: 5,
                       color: primaryColour,
@@ -66,7 +67,8 @@ class ReissueBookScreenCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                         child: Text(
                           'Reissue',
                           style: TextStyle(
@@ -98,7 +100,7 @@ class ReissueBookScreenCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "$isbn:",
+                    isbn,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,
@@ -131,7 +133,7 @@ class ReissueBookScreenCard extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:  [
+                children: [
                   const Text(
                     'Due Date : ',
                     style: TextStyle(
