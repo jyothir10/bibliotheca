@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/Components/prop-value_text.dart';
 import 'package:bibliotheca/Components/prop-value_widget.dart';
+import 'package:bibliotheca/Screens/OnboardingScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -34,6 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _signOut() async {
     await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacementNamed(context, OnboardingScreen.id);
   }
 
   @override
