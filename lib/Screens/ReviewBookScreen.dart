@@ -1,5 +1,6 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/ReviewBookCard.dart';
+import 'package:bibliotheca/Screens/ReviewBookScreen1.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +108,10 @@ class _ReviewBookScreenState extends State<ReviewBookScreen> {
                                           return ReviewBookCard(
                                             isbn: l1[index],
                                             bookName: l2[index],
-                                            onTap: () {},
+                                            onTap: () {
+                                              Navigator.pushNamed(context,
+                                                  ReviewBookScreen1.id);
+                                            },
                                           );
                                         }),
                                   );
