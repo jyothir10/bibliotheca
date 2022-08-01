@@ -6,6 +6,7 @@ import 'package:bibliotheca/Screens/RegistrationScreen.dart';
 import 'package:bibliotheca/Screens/RegistrationScreen2.dart';
 import 'package:bibliotheca/Screens/ReissueBookScreen.dart';
 import 'package:bibliotheca/Screens/ReviewBookScreen.dart';
+import 'package:bibliotheca/Screens/ReviewBookScreen1.dart';
 import 'package:bibliotheca/Screens/SearchScreen1.dart';
 import 'package:bibliotheca/Screens/SearchScreen2.dart';
 import 'package:bibliotheca/Screens/SearchScreen3.dart';
@@ -60,9 +61,10 @@ class MyApp extends StatelessWidget {
           SearchScreen3.id: (context) => SearchScreen3(),
           ProfileScreen.id: (context) => ProfileScreen(),
           IssuedBooks.id: (context) => IssuedBooks(),
+          NotificationScreen.id: (context) => NotificationScreen(),
           DuePaymentScreen.id: (context) => DuePaymentScreen(),
           ReviewBookScreen.id: (context) => ReviewBookScreen(),
-          NotificationScreen.id: (context) => NotificationScreen(),
+          ReviewBookScreen1.id: (context) => ReviewBookScreen1(),
         });
   }
 }

@@ -1,6 +1,6 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/SearchCard.dart';
-import 'package:bibliotheca/Screens/SearchScreen.dart';
+import 'package:bibliotheca/Screens/search_screen_main.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class _SearchScreen3State extends State<SearchScreen3> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pushReplacementNamed(context, SearchScreen.id);
+        Navigator.pushReplacementNamed(context, SearchScreenMain.id);
         return false;
       },
       child: Scaffold(
