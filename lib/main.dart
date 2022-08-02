@@ -1,4 +1,5 @@
 import 'package:bibliotheca/Screens/DashBoardScreen.dart';
+import 'package:bibliotheca/Screens/HistoryScreen.dart';
 import 'package:bibliotheca/Screens/LoginScreen.dart';
 import 'package:bibliotheca/Screens/NotificationScreen.dart';
 import 'package:bibliotheca/Screens/OnboardingScreen.dart';
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
           DuePaymentScreen.id: (context) => DuePaymentScreen(),
           ReviewBookScreen.id: (context) => ReviewBookScreen(),
           ReviewBookScreen1.id: (context) => ReviewBookScreen1(),
+          HistoryScreen.id: (context) => HistoryScreen(),
         });
   }
 }
