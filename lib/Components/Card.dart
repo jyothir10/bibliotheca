@@ -7,11 +7,13 @@ import '../constants.dart';
 import 'BlueButton.dart';
 
 class card extends StatefulWidget {
-  // final double width;
-  // final double height;
-  // final double borderRadius;
 
-  const card({Key? key}) : super(key: key);
+  Function()? ontap;
+  card(
+      {
+    required this.ontap,
+    Key? key})
+      : super(key: key);
 
   @override
   State<card> createState() => _cardState();
@@ -117,7 +119,7 @@ class _cardState extends State<card> {
                 child: BlueButton(
                   text: 'Proceed',
                   width: 150,
-                  onTap: () {},
+                  onTap: widget.ontap,
                   Colour: 0xff545ad8,
                 ),
               )
