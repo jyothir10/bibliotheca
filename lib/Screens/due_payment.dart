@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:bibliotheca/Components/card.dart';
 import 'dart:math' as math;
-//import 'package:intl/intl.dart';
+
+import 'package:bibliotheca/Components/FineCard.dart';
+import 'package:flutter/material.dart';
 
 class DuePaymentScreen extends StatefulWidget {
   static const String id = '/pay_due';
@@ -60,7 +60,8 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                   )),
             )),
         const Positioned(
-            left: 65, top: 85,
+          left: 65,
+          top: 85,
           child: Text(
             'Pay Fine',
             style: TextStyle(
@@ -74,7 +75,7 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
           child: Column(
             children: [
               Container(
-                margin:EdgeInsets.only(top: 35,left: 10),
+                margin: EdgeInsets.only(top: 35, left: 10),
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: IconButton(
@@ -89,16 +90,21 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 0.08*MediaQuery.of(context).size.height,),
+              SizedBox(
+                height: 0.08 * MediaQuery.of(context).size.height,
+              ),
               ConstrainedBox(
                 constraints: BoxConstraints(
                     maxHeight: MediaQuery.of(context).size.height - 150),
                 child: ListView(
                   shrinkWrap: true,
-                  children: const [
-                    card(),
-                    card(),
-                    card(),
+                  children: [
+                    FineCard(
+                      isbn: "",
+                      bookname: '',
+                      returndate: '',
+                      issuedate: '',
+                    ),
                   ],
                 ),
               )

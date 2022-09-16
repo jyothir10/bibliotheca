@@ -6,18 +6,20 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'BlueButton.dart';
 
-class card extends StatefulWidget {
-  // final double width;
-  // final double height;
-  // final double borderRadius;
+class FineCard extends StatelessWidget {
+  final String bookname;
+  final String isbn;
+  final String issuedate;
+  final String returndate;
 
-  const card({Key? key}) : super(key: key);
+  const FineCard(
+      {required this.isbn,
+      required this.bookname,
+      required this.issuedate,
+      required this.returndate,
+      Key? key})
+      : super(key: key);
 
-  @override
-  State<card> createState() => _cardState();
-}
-
-class _cardState extends State<card> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +39,7 @@ class _cardState extends State<card> {
               Container(
                 margin: EdgeInsets.only(left: 22, top: 20),
                 child: Text(
-                  'Book Name',
+                  bookname,
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       fontSize: 22,
@@ -66,13 +68,13 @@ class _cardState extends State<card> {
                     Container(
                       margin:
                           const EdgeInsets.only(bottom: 12, left: 8, right: 12),
-                      child: const propValueWidget(
+                      child: propValueWidget(
                         widget1: textProperty(
                           t: 'ISBN Number:',
                           c: black,
                         ),
                         widget2: textValue(
-                          t: 'AC123',
+                          t: isbn,
                           c: black,
                         ),
                       ),
@@ -80,17 +82,17 @@ class _cardState extends State<card> {
                     Container(
                       margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
-                      child: const propValueWidget(
+                      child: propValueWidget(
                         widget1: textProperty(t: 'Issue Date: ', c: black),
-                        widget2: textValue(t: '29-06-2022', c: black),
+                        widget2: textValue(t: issuedate, c: black),
                       ),
                     ),
                     Container(
                       margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
-                      child: const propValueWidget(
+                      child: propValueWidget(
                         widget1: textProperty(t: 'Due Date: ', c: black),
-                        widget2: textValue(t: '15-07-2022', c: Colors.red),
+                        widget2: textValue(t: returndate, c: Colors.red),
                       ),
                     ),
                     Container(

@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.id,
+        initialRoute: DashBoardScreen.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
