@@ -11,12 +11,14 @@ class FineCard extends StatelessWidget {
   final String isbn;
   final String issuedate;
   final String returndate;
+  Function()? ontap;
 
-  const FineCard(
+  FineCard(
       {required this.isbn,
       required this.bookname,
       required this.issuedate,
       required this.returndate,
+      required this.ontap,
       Key? key})
       : super(key: key);
 
@@ -119,7 +121,7 @@ class FineCard extends StatelessWidget {
                 child: BlueButton(
                   text: 'Proceed',
                   width: 150,
-                  onTap: () {},
+                  onTap: ontap,
                   Colour: 0xff545ad8,
                 ),
               )
