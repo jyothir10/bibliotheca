@@ -111,7 +111,10 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
                                                 isbn: l1[index],
                                                 bookname: l2[index],
                                                 issueDate: issuedate,
-                                                dueDate: returndate);
+                                                dueDate: returndate,
+                                                ontap: (){
+
+                                            },);
                                           }),
                                     );
                                   } else if (index ==
