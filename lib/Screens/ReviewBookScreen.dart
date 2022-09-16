@@ -109,8 +109,7 @@ class _ReviewBookScreenState extends State<ReviewBookScreen> {
                                             isbn: l1[index],
                                             bookName: l2[index],
                                             onTap: () {
-                                              Navigator.pushNamed(context,
-                                                  ReviewBookScreen1.id);
+                                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => ReviewBookScreen1(bookno: l1[index])));
                                             },
                                           );
                                         }),

@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               ),
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: SplashScreen.id,
+        initialRoute: DashBoardScreen.id,
         routes: {
           SplashScreen.id: (context) => SplashScreen(),
           OnboardingScreen.id: (context) => OnboardingScreen(),
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
           NotificationScreen.id: (context) => NotificationScreen(),
           DuePaymentScreen.id: (context) => DuePaymentScreen(),
           ReviewBookScreen.id: (context) => ReviewBookScreen(),
-          ReviewBookScreen1.id: (context) => ReviewBookScreen1(),
+          ReviewBookScreen1.id: (context) => ReviewBookScreen1(bookno: '',),
           HistoryScreen.id: (context) => HistoryScreen(),
         });
   }

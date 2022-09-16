@@ -2,18 +2,37 @@ import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/BlueButton.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReviewBookScreen1 extends StatefulWidget {
   static const String id = '/review1';
-  const ReviewBookScreen1({Key? key}) : super(key: key);
+  String bookno;
+
+  ReviewBookScreen1({
+    required this.bookno,
+    Key? key}) : super(key: key);
 
   @override
   State<ReviewBookScreen1> createState() => _ReviewBookScreen1State();
 }
 
 class _ReviewBookScreen1State extends State<ReviewBookScreen1> {
+
+  TextEditingController reviewcontroller = TextEditingController();
   @override
+
+  postReview() async{
+    final book = FirebaseFirestore.instance
+        .collection('Books')
+        .doc(widget.bookno);
+    print(book);
+
+    book.update({
+      'review': FieldValue.arrayUnion([reviewcontroller.text])
+    });
+  }
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -78,30 +97,31 @@ class _ReviewBookScreen1State extends State<ReviewBookScreen1> {
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w500),
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 9),
-                                  child: RatingBar.builder(
-                                    initialRating: 3,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 4.0),
-                                    itemBuilder: (context, _) => Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    },
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding:
+                                //       const EdgeInsets.symmetric(vertical: 9),
+                                //   child: RatingBar.builder(
+                                //     initialRating: 3,
+                                //     minRating: 1,
+                                //     direction: Axis.horizontal,
+                                //     allowHalfRating: true,
+                                //     itemCount: 5,
+                                //     itemPadding:
+                                //         EdgeInsets.symmetric(horizontal: 4.0),
+                                //     itemBuilder: (context, _) => Icon(
+                                //       Icons.star,
+                                //       color: Colors.amber,
+                                //     ),
+                                //     onRatingUpdate: (rating) {
+                                //       print(rating);
+                                //     },
+                                //   ),
+                                // ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 9, horizontal: 9),
                                   child: TextField(
+                                    controller: reviewcontroller,
                                     cursorWidth: 1,
                                     cursorColor: primaryColour,
                                     keyboardType: TextInputType.multiline,
@@ -136,7 +156,10 @@ class _ReviewBookScreen1State extends State<ReviewBookScreen1> {
                                 BlueButton(
                                     text: "Submit",
                                     width: 180,
-                                    onTap: () {},
+                                    onTap: () {
+                                      postReview();
+                                      reviewcontroller.clear();
+                                    },
                                     Colour: 0xff545ad8),
                               ],
                             )),
