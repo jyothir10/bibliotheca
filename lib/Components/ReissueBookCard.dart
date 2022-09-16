@@ -6,6 +6,7 @@ class ReissueBookScreenCard extends StatelessWidget {
   final String isbn;
   final String issueDate;
   final String dueDate;
+  final Function()? ontap;
 
   const ReissueBookScreenCard({
     Key? key,
@@ -13,6 +14,7 @@ class ReissueBookScreenCard extends StatelessWidget {
     required this.isbn,
     required this.issueDate,
     required this.dueDate,
+    required this.ontap,
   }) : super(key: key);
 
   @override
@@ -59,7 +61,7 @@ class ReissueBookScreenCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: ontap,
                     child: Card(
                       elevation: 5,
                       color: primaryColour,
