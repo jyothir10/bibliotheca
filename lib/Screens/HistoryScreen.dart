@@ -85,6 +85,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                   List l1 = data['bookid'];
                                   List l2 = data['bookname'];
                                   List l3 = data['issuedates'];
+                                  List l4 = data['returndates'];
 
                                   return Container(
                                     height: 565,
@@ -98,8 +99,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                             l3[index].toDate();
                                             String issuedate =
                                                 "${date_issue.day}-${date_issue.month}-${date_issue.year}";
-                                            DateTime date_return = date_issue
-                                                .add(Duration(days: 15));
+                                            DateTime date_return = l4[index].toDate();
                                             String returndate =
                                                 "${date_return.day}-${date_return.month}-${date_return.year}";
 
