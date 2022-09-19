@@ -1,5 +1,6 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/SearchCard.dart';
+import 'package:bibliotheca/Screens/ReviewsScreen.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -104,6 +105,14 @@ class _SearchScreen1State extends State<SearchScreen1> {
                                               shelf: data['shelf'],
                                               rack: data['rack'],
                                               status: data['isavail'],
+                                              ontap: () {
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ReviewsScreen(
+                                                                bookno: data[
+                                                                    'id'])));
+                                              },
                                             );
                                           });
                                 },
@@ -146,6 +155,14 @@ class _SearchScreen1State extends State<SearchScreen1> {
                                                 shelf: data['shelf'],
                                                 rack: data['rack'],
                                                 status: data['isavail'],
+                                                ontap: () {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ReviewsScreen(
+                                                                  bookno: data[
+                                                                      'id'])));
+                                                },
                                               );
                                             }
                                             return Container();

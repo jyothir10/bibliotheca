@@ -1,9 +1,9 @@
 import 'package:bibliotheca/Components/Background.dart';
+import 'package:bibliotheca/Components/BottomBar.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:bibliotheca/Components/BottomBar.dart';
 
 import '../Components/ib_card.dart';
 import 'DashBoardScreen.dart';
@@ -37,10 +37,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-          onWillPop: () async {
-            Navigator.pushReplacementNamed(context, DashBoardScreen.id);
-            return false;
-          },
+      onWillPop: () async {
+        Navigator.pushReplacementNamed(context, DashBoardScreen.id);
+        return false;
+      },
       child: Scaffold(
         body: Stack(children: <Widget>[
           Background(),
@@ -70,67 +70,73 @@ class _HistoryScreenState extends State<HistoryScreen> {
                             .snapshots(),
                         builder: (context, snapshots) {
                           return (snapshots.connectionState ==
-                              ConnectionState.waiting)
+                                  ConnectionState.waiting)
                               ? const Center(
-                            child: CircularProgressIndicator(
-                              color: primaryColour,
-                            ),
-                          )
+                                  child: CircularProgressIndicator(
+                                    color: primaryColour,
+                                  ),
+                                )
                               : ListView.builder(
-                              itemCount: snapshots.data!.docs.length,
-                              itemBuilder: (context, index) {
-                                var data = snapshots.data!.docs[index].data()
-                                as Map<String, dynamic>;
-                                if (data['admno'] == admno) {
-                                  List l1 = data['bookid'];
-                                  List l2 = data['bookname'];
-                                  List l3 = data['issuedates'];
-                                  List l4 = data['returndates'];
+                                  itemCount: snapshots.data!.docs.length,
+                                  itemBuilder: (context, index) {
+                                    var data = snapshots.data!.docs[index]
+                                        .data() as Map<String, dynamic>;
+                                    if (data['admno'] == admno &&
+                                        data[bookids] != null) {
+                                      List l1 = data['bookid'];
+                                      List l2 = data['bookname'];
+                                      List l3 = data['issuedates'];
+                                      List l4 = data['returndates'];
 
-                                  return Container(
-                                    height: 565,
-                                    width: MediaQuery.of(context).size.width,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(bottom: 15),
-                                      child: ListView.builder(
-                                          itemCount: l1.length,
-                                          itemBuilder: (context, index) {
-                                            DateTime date_issue =
-                                            l3[index].toDate();
-                                            String issuedate =
-                                                "${date_issue.day}-${date_issue.month}-${date_issue.year}";
-                                            DateTime date_return = l4[index].toDate();
-                                            String returndate =
-                                                "${date_return.day}-${date_return.month}-${date_return.year}";
+                                      exist = true;
 
-                                            return ibCard(
-                                                isbn: l1[index],
-                                                bookName: l2[index],
-                                                issueDate: issuedate,
-                                                returnDate: returndate);
-                                          }),
-                                    ),
-                                  );
-                                } else if (index ==
-                                    snapshots.data!.docs.length - 1 &&
-                                    exist == false) {
-                                  return Flexible(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "No isssued books!",
-                                          style: dashboardTextStyle.copyWith(
-                                              fontSize: 14),
+                                      return Container(
+                                        height: 565,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 15),
+                                          child: ListView.builder(
+                                              itemCount: l1.length,
+                                              itemBuilder: (context, index) {
+                                                DateTime date_issue =
+                                                    l3[index].toDate();
+                                                String issuedate =
+                                                    "${date_issue.day}-${date_issue.month}-${date_issue.year}";
+                                                DateTime date_return =
+                                                    l4[index].toDate();
+                                                String returndate =
+                                                    "${date_return.day}-${date_return.month}-${date_return.year}";
+
+                                                return ibCard(
+                                                    isbn: l1[index],
+                                                    bookName: l2[index],
+                                                    issueDate: issuedate,
+                                                    returnDate: returndate);
+                                              }),
                                         ),
-                                      ],
-                                    ),
-                                  );
-                                } else {
-                                  return Container();
-                                }
-                              });
+                                      );
+                                    } else if (index ==
+                                            snapshots.data!.docs.length - 1 &&
+                                        exist == false) {
+                                      return Flexible(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "No isssued books!",
+                                              style: dashboardTextStyle
+                                                  .copyWith(fontSize: 14),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    } else {
+                                      return Container();
+                                    }
+                                  });
                         },
                       ),
                     ),
