@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:bibliotheca/Components/card.dart';
 import 'dart:math' as math;
+
+import 'package:bibliotheca/Components/FineCard.dart';
+import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+
+import '../Components/FineCard.dart';
 //import 'package:intl/intl.dart';
 
 class DuePaymentScreen extends StatefulWidget {
@@ -12,10 +16,48 @@ class DuePaymentScreen extends StatefulWidget {
 }
 
 class DuePaymentScreenState extends State<DuePaymentScreen> {
+  final _razorpay = Razorpay();
+
+  @override
+  void initState() {
+    super.initState();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  var options = {
+    'key': 'rzp_test_7oSEtWonPIbah3',
+    'amount': 500, //in the smallest currency sub-unit.
+    'name': 'Bibliotheca',
+    'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
+    'description': 'Paying FIne',
+    'timeout': 60, // in seconds
+    'prefill': {'contact': '9123456789', 'email': 'gaurav.kumar@example.com'}
+  };
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    print("Done");
+    // Do something when payment succeeds
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+    print("Fail");
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet is selected
+  }
+
   @override
   Widget build(BuildContext context) {
     //final now = new DateTime.now();
-
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(children: <Widget>[
@@ -60,7 +102,8 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                   )),
             )),
         const Positioned(
-            left: 65, top: 85,
+          left: 65,
+          top: 85,
           child: Text(
             'Pay Fine',
             style: TextStyle(
@@ -74,7 +117,7 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
           child: Column(
             children: [
               Container(
-                margin:EdgeInsets.only(top: 35,left: 10),
+                margin: EdgeInsets.only(top: 35, left: 10),
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: IconButton(
@@ -89,16 +132,32 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 0.08*MediaQuery.of(context).size.height,),
+              SizedBox(
+                height: 0.08 * MediaQuery.of(context).size.height,
+              ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height - 150),
+                    maxHeight: MediaQuery.of(context).size.height - 100),
                 child: ListView(
                   shrinkWrap: true,
-                  children: const [
-                    card(),
-                    card(),
-                    card(),
+                  children: [
+                    FineCard(
+                      isbn: "",
+                      bookname: '',
+                      returndate: '',
+                      issuedate: '',
+                      ontap: () {
+                        var options = {
+                          'key': 'rzp_test_7oSEtWonPIbah3',
+                          'amount': 500, //in the smallest currency sub-unit.
+                          'name': 'Bibliotheca',
+                          'description': 'Pay fine',
+                          'timeout': 300, // in seconds
+                          'prefill': {'contact': '', 'email': ''}
+                        };
+                        _razorpay.open(options);
+                      },
+                    )
                   ],
                 ),
               )
@@ -107,5 +166,11 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
         ),
       ]),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _razorpay.clear(); // Removes all listeners
   }
 }
