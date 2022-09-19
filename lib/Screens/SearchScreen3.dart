@@ -4,6 +4,8 @@ import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'ReviewsScreen.dart';
+
 class SearchScreen3 extends StatefulWidget {
   static const String id = '/search3';
   const SearchScreen3({Key? key}) : super(key: key);
@@ -104,6 +106,14 @@ class _SearchScreen3State extends State<SearchScreen3> {
                                               shelf: data['shelf'],
                                               rack: data['rack'],
                                               status: data['isavail'],
+                                              ontap: () {
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ReviewsScreen(
+                                                                bookno: data[
+                                                                    'id'])));
+                                              },
                                             );
                                           });
                                 },
@@ -146,6 +156,14 @@ class _SearchScreen3State extends State<SearchScreen3> {
                                                 shelf: data['shelf'],
                                                 rack: data['rack'],
                                                 status: data['isavail'],
+                                                ontap: () {
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ReviewsScreen(
+                                                                  bookno: data[
+                                                                      'id'])));
+                                                },
                                               );
                                             }
                                             return Container();
