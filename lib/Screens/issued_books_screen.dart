@@ -96,7 +96,7 @@ class _IssuedBooksState extends State<IssuedBooks> {
                                 var data = snapshots.data!.docs[index].data()
                                     as Map<String, dynamic>;
                                 if (data['admno'] == admno &&
-                                    data[bookids] != null) {
+                                    data['bookid'] != null) {
                                   List l1 = data['bookid'];
                                   List l2 = data['bookname'];
                                   List l3 = data['issuedates'];
@@ -135,7 +135,7 @@ class _IssuedBooksState extends State<IssuedBooks> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "No isssued books!",
+                                          "No fine dues!",
                                           style: dashboardTextStyle.copyWith(
                                               fontSize: 14),
                                         ),
