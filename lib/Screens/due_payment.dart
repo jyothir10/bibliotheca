@@ -68,12 +68,12 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final now = new DateTime.now();
-    try {
-      _razorpay.open(options);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
+    final now = new DateTime.now();
+    // try {
+    //   _razorpay.open(options);
+    // } catch (e) {
+    //   debugPrint(e.toString());
+    // }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(children: <Widget>[
@@ -202,7 +202,22 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                                             bookname: l2[index],
                                             issuedate: issuedate,
                                             returndate: returndate,
-                                            ontap: () {});
+                                            ontap: () {
+                                              var options = {
+                                                'key':
+                                                    'rzp_test_7oSEtWonPIbah3',
+                                                'amount':
+                                                    500, //in the smallest currency sub-unit.
+                                                'name': 'Bibliotheca',
+                                                'description': 'Pay fine',
+                                                'timeout': 300, // in seconds
+                                                'prefill': {
+                                                  'contact': '',
+                                                  'email': ''
+                                                }
+                                              };
+                                              _razorpay.open(options);
+                                            });
                                       }),
                                 );
                               } else if (index ==
