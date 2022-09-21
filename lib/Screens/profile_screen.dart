@@ -22,9 +22,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final List<textValue> value = <textValue>[
-    textValue(t: 'Shruti', c: black),
-    textValue(t: '19B123', c: black),
-    textValue(t: 'abc@xyz.com', c: black),
+    textValue(t: 'Sanika P', c: black),
+    textValue(t: '19B101', c: black),
+    textValue(t: 'sanika@gmail.com', c: black),
   ];
   final List<textProperty> property = <textProperty>[
     textProperty(t: 'Name :', c: black),

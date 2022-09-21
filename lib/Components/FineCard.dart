@@ -11,6 +11,8 @@ class FineCard extends StatelessWidget {
   final String isbn;
   final String issuedate;
   final String returndate;
+  final String days;
+  final int fine;
   Function()? ontap;
 
   FineCard(
@@ -19,7 +21,7 @@ class FineCard extends StatelessWidget {
       required this.issuedate,
       required this.returndate,
       required this.ontap,
-      Key? key})
+      Key? key, required this.days, required this.fine})
       : super(key: key);
 
   @override
@@ -100,17 +102,17 @@ class FineCard extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(
                           top: 12, bottom: 12, left: 8, right: 12),
-                      child: const propValueWidget(
+                      child:  propValueWidget(
                         widget1: textProperty(t: 'Days Exceeded:', c: black),
-                        widget2: textValue(t: '20', c: black),
+                        widget2: textValue(t: days, c: black),
                       ),
                     ),
                     Container(
                       margin:
                           const EdgeInsets.only(top: 12, left: 8, right: 12),
-                      child: const propValueWidget(
+                      child: propValueWidget(
                         widget1: textProperty(t: 'Due Total:', c: color1),
-                        widget2: textValue(t: 'Rs. 100', c: color1),
+                        widget2: textValue(t: 'Rs. $fine', c: color1),
                       ),
                     ),
                   ],
