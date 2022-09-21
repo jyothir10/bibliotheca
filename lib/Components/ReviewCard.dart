@@ -10,7 +10,6 @@ class ReviewCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 17),
       child: Center(
         child: Container(
-          height: 85,
           width: MediaQuery.of(context).size.width * .8,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -39,7 +38,7 @@ class ReviewCard extends StatelessWidget {
                       review,
                       style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 13,
                         fontFamily: 'Montserrat',
                       ),
                     ),

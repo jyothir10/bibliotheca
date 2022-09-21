@@ -226,7 +226,7 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "No isssued books!",
+                                        "No fine dues!",
                                         style: dashboardTextStyle.copyWith(
                                             fontSize: 14),
                                       ),

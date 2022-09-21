@@ -135,7 +135,7 @@ class _IssuedBooksState extends State<IssuedBooks> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "No fine dues!",
+                                          "No isssued books!",
                                           style: dashboardTextStyle.copyWith(
                                               fontSize: 14),
                                         ),
