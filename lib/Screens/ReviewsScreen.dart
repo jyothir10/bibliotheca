@@ -52,6 +52,9 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: 10,
+                    ),
                     Padding(
                       padding: EdgeInsets.only(top: 36, bottom: 27),
                       child: Text(
@@ -71,11 +74,8 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
                         ),
                       ),
                     ),
-                    // ListView.builder(itemBuilder: (context, index){
-                    //
-                    // }),
                     Container(
-                      height: 627,
+                      height: 617,
                       child: StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance
                             .collection('Books')

@@ -15,6 +15,10 @@ class ReissueBookScreen extends StatefulWidget {
 
 class _ReissueBookScreenState extends State<ReissueBookScreen> {
 
+  int i = 0;
+  late DateTime date_new;
+  String newdate = "";
+  var dt =  DateTime.now();
   String? admno = "";
   bool exist = false;
   late QueryDocumentSnapshot<Map<String, dynamic>> books;
@@ -32,6 +36,12 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
     admno = prefs.getString('id');
   }
 
+  updateReturndate()async {
+    final student =
+    FirebaseFirestore.instance.collection('Students').doc(admno);
+  //  student.update({'returndates': });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,14 +117,21 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
                                             String returndate =
                                                 "${date_return.day}-${date_return.month}-${date_return.year}";
 
-                                            return ReissueBookScreenCard(
+                                            if(dt.isBefore(date_return)) {
+                                              return ReissueBookScreenCard(
                                                 isbn: l1[index],
                                                 bookname: l2[index],
                                                 issueDate: issuedate,
-                                                dueDate: returndate,
-                                                ontap: (){
-
-                                            },);
+                                                dueDate: i==0?returndate:newdate,
+                                                ontap: () {
+                                                    date_new = date_return.add(const Duration(days: 20));
+                                                    newdate =  "${date_new.day}-${date_new.month}-${date_new.year}";
+                                                    setState((){
+                                                      i++;
+                                                    });
+                                                  });
+                                            }
+                                            else return Container();
                                           }),
                                     );
                                   } else if (index ==

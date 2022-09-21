@@ -25,8 +25,8 @@ class SearchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 209,
-      width: MediaQuery.of(context).size.width * .86470,
+      //height: 209,
+      width: MediaQuery.of(context).size.width * .88,
       child: Card(
         color: Colors.white,
         shape: RoundedRectangleBorder(
@@ -34,7 +34,7 @@ class SearchCard extends StatelessWidget {
         ),
         elevation: 15,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -115,7 +115,7 @@ class SearchCard extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const EdgeInsets.only(right: 5),
                     child: InkWell(
                       onTap: ontap,
                       child: Card(
