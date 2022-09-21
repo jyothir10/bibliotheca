@@ -33,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final List<textProperty> property = <textProperty>[
     textProperty(t: 'Name :', c: black),
-    textProperty(t: 'Admission No.:', c: black),
+    textProperty(t: 'Admission No :', c: black),
     textProperty(t: 'E-mail :', c: black),
   ];
 
