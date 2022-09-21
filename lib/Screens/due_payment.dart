@@ -6,6 +6,7 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Components/FineCard.dart';
 import '../constants.dart';
+import 'DashBoardScreen.dart';
 //import 'package:intl/intl.dart';
 
 class DuePaymentScreen extends StatefulWidget {
@@ -204,16 +205,17 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                                               returndate: returndate,
                                               days: day.inDays.toString(),
                                               fine: day.inDays* 5,   //p
-                                              ontap: () {
+                                              ontap: () async{
                                                 var options = {
                                                   'key': 'rzp_test_7oSEtWonPIbah3',
-                                                  'amount': day.inDays* 5 * 100, //in the smallest currency sub-unit.
+                                                  'amount': 500, //in the smallest currency sub-unit.
                                                   'name': 'Bibliotheca',
                                                   'description': 'Paying Fine',
                                                   'timeout': 300, // in seconds
                                                   'prefill': {'contact': '', 'email': ''}
                                                 };
                                                 _razorpay.open(options);
+                                                Navigator.pushReplacementNamed(context, DashBoardScreen.id);
                                               });
                                         }else return Container();
                                       }),
