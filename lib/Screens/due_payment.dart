@@ -1,10 +1,13 @@
 import 'dart:math' as math;
 
 import 'package:bibliotheca/Components/FineCard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Components/FineCard.dart';
+import '../constants.dart';
 //import 'package:intl/intl.dart';
 
 class DuePaymentScreen extends StatefulWidget {
@@ -24,6 +27,7 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    getUser();
   }
 
   var options = {
@@ -50,6 +54,18 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
     // Do something when an external wallet is selected
   }
 
+  String? admno = "";
+  bool exist = false;
+  late QueryDocumentSnapshot<Map<String, dynamic>> books;
+  List<String> bookids = [];
+  List<String> booknames = [];
+  List issuedates = [];
+
+  getUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    admno = prefs.getString('id');
+  }
+
   @override
   Widget build(BuildContext context) {
     //final now = new DateTime.now();
@@ -62,16 +78,17 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
       backgroundColor: Colors.white,
       body: Stack(children: <Widget>[
         Positioned(
-            top: 530,
-            left: -108,
-            child: Container(
-                width: 215,
-                height: 224,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF545AD8).withOpacity(0.24),
-                  borderRadius:
-                      const BorderRadius.all(Radius.elliptical(215, 224)),
-                ))),
+          top: 530,
+          left: -108,
+          child: Container(
+            width: 215,
+            height: 224,
+            decoration: BoxDecoration(
+              color: const Color(0xFF545AD8).withOpacity(0.24),
+              borderRadius: const BorderRadius.all(Radius.elliptical(215, 224)),
+            ),
+          ),
+        ),
         Positioned(
             top: -5,
             left: 220,
@@ -113,56 +130,105 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
             ),
           ),
         ),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 35, left: 10),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context, true);
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_rounded,
-                      size: 30,
-                      color: Color(0xFF545AD8),
-                    ),
+        Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 35, left: 10),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_rounded,
+                    size: 30,
+                    color: Color(0xFF545AD8),
                   ),
                 ),
               ),
-              SizedBox(
-                height: 0.08 * MediaQuery.of(context).size.height,
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height - 100),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    FineCard(
-                      isbn: "",
-                      bookname: '',
-                      returndate: '',
-                      issuedate: '',
-                      ontap: () {
-                        var options = {
-                          'key': 'rzp_test_7oSEtWonPIbah3',
-                          'amount': 500, //in the smallest currency sub-unit.
-                          'name': 'Bibliotheca',
-                          'description': 'Pay fine',
-                          'timeout': 300, // in seconds
-                          'prefill': {'contact': '', 'email': ''}
-                        };
-                        _razorpay.open(options);
-                      },
-                    )
-                  ],
+            ),
+            SizedBox(
+              height: 0.08 * MediaQuery.of(context).size.height,
+            ),
+            ConstrainedBox(
+              constraints:
+                  BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+              child: Container(
+                height: 632,
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('Students')
+                      .snapshots(),
+                  builder: (context, snapshots) {
+                    return (snapshots.connectionState ==
+                            ConnectionState.waiting)
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: primaryColour,
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: snapshots.data!.docs.length,
+                            itemBuilder: (context, index) {
+                              var data = snapshots.data!.docs[index].data()
+                                  as Map<String, dynamic>;
+                              if (data['admno'] == admno &&
+                                  data['bookid'] != null) {
+                                List l1 = data['bookid'];
+                                List l2 = data['bookname'];
+                                List l3 = data['issuedates'];
+                                List l4 = data['returndates'];
+                                exist = true;
+
+                                return Container(
+                                  height: 600,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListView.builder(
+                                      itemCount: l1.length,
+                                      itemBuilder: (context, index) {
+                                        DateTime date_issue =
+                                            l3[index].toDate();
+                                        String issuedate =
+                                            "${date_issue.day}-${date_issue.month}-${date_issue.year}";
+                                        // DateTime date_return = date_issue.add(Duration(days: 15));
+                                        DateTime date_return =
+                                            l4[index].toDate();
+                                        String returndate =
+                                            "${date_return.day}-${date_return.month}-${date_return.year}";
+
+                                        return FineCard(
+                                            isbn: l1[index],
+                                            bookname: l2[index],
+                                            issuedate: issuedate,
+                                            returndate: returndate,
+                                            ontap: () {});
+                                      }),
+                                );
+                              } else if (index ==
+                                      snapshots.data!.docs.length - 1 &&
+                                  exist == false) {
+                                return Flexible(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "No isssued books!",
+                                        style: dashboardTextStyle.copyWith(
+                                            fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                return Container();
+                              }
+                            });
+                  },
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ]),
     );
