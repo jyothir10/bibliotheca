@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class NotificationsCard extends StatelessWidget {
-  final String time;
-  final String details;
-  const NotificationsCard({Key? key, required this.time, required this.details})
+  final String name;
+  final String date;
+  final String days;
+  const NotificationsCard({Key? key, required this.name, required this.date, required this.days})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 17),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Center(
         child: Container(
-          height: 85,
           width: MediaQuery.of(context).size.width * .8,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -33,21 +33,33 @@ class NotificationsCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text(
+                  "Due date Alert!",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      "Due date is near !",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .4,
+                      child: Text(
+                        "Book $name is due on $date",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 10,
+                          fontFamily: 'Montserrat',
+                        ),
                       ),
                     ),
                     Text(
-                      time,
+                      "$days\ndays left",
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 10,
@@ -55,17 +67,6 @@ class NotificationsCard extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 70),
-                  child: Text(
-                    "Due date for the book $details",
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 10,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
                 ),
               ],
             ),
