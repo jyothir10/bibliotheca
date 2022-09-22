@@ -9,7 +9,7 @@ class Background extends StatelessWidget {
     return Container(
       width: 414,
       height: 896,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
       ),
       child: Stack(
@@ -20,7 +20,7 @@ class Background extends StatelessWidget {
             child: Container(
               width: 212,
               height: 204,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromRGBO(84, 90, 216, 0.10000000149011612),
                 borderRadius: BorderRadius.all(Radius.elliptical(212, 204)),
               ),

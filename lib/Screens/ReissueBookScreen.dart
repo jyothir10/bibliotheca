@@ -141,11 +141,13 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
 
                                                       l4[index] = date_new;
 
-                                                      student.update({
-                                                        "returndates"[index]:
-                                                            FieldValue
-                                                                .arrayUnion(l4)
-                                                      });
+                                                      // print(l4);
+                                                      //
+                                                      // student.update({
+                                                      //   "returndates":
+                                                      //       FieldValue
+                                                      //           .arrayUnion(l4)
+                                                      // });
 
                                                       setState(
                                                         () {
