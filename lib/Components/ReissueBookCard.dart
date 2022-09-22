@@ -105,7 +105,7 @@ class ReissueBookScreenCard extends StatelessWidget {
                     isbn,
                     style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 12,
+                      fontSize: 14,
                       fontFamily: 'Montserrat',
                     ),
                   ),
@@ -127,7 +127,7 @@ class ReissueBookScreenCard extends StatelessWidget {
                     issueDate,
                     style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 12,
+                      fontSize: 13,
                       fontFamily: 'Montserrat',
                     ),
                   ),
@@ -149,7 +149,7 @@ class ReissueBookScreenCard extends StatelessWidget {
                     dueDate,
                     style: const TextStyle(
                       color: Colors.black,
-                      fontSize: 12,
+                      fontSize: 13,
                       fontFamily: 'Montserrat',
                     ),
                   ),
