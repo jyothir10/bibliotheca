@@ -34,12 +34,15 @@ class ReviewCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      review,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontFamily: 'Montserrat',
+                    SizedBox(
+                      width: 230,
+                      child: Text(
+                        review,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontFamily: 'Montserrat',
+                        ),
                       ),
                     ),
                   ],
