@@ -10,7 +10,6 @@ class ReviewCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 17),
       child: Center(
         child: Container(
-          height: 85,
           width: MediaQuery.of(context).size.width * .8,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -35,12 +34,15 @@ class ReviewCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      review,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
-                        fontFamily: 'Montserrat',
+                    SizedBox(
+                      width: 230,
+                      child: Text(
+                        review,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontFamily: 'Montserrat',
+                        ),
                       ),
                     ),
                   ],

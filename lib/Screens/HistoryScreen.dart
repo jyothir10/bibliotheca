@@ -4,7 +4,6 @@ import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Components/ib_card.dart';
 import 'DashBoardScreen.dart';
 
@@ -82,7 +81,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     var data = snapshots.data!.docs[index]
                                         .data() as Map<String, dynamic>;
                                     if (data['admno'] == admno &&
-                                        data[bookids] != null) {
+                                        data['bookid'] != null) {
                                       List l1 = data['bookid'];
                                       List l2 = data['bookname'];
                                       List l3 = data['issuedates'];

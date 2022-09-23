@@ -1,8 +1,8 @@
 import 'package:bibliotheca/Components/Background.dart';
 import 'package:bibliotheca/Components/ReissueBookCard.dart';
-import 'package:flutter/material.dart';
 import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ReissueBookScreen extends StatefulWidget {
@@ -14,7 +14,10 @@ class ReissueBookScreen extends StatefulWidget {
 }
 
 class _ReissueBookScreenState extends State<ReissueBookScreen> {
-
+  int i = 0;
+  late DateTime date_new;
+  String newdate = "";
+  var dt = DateTime.now();
   String? admno = "";
   bool exist = false;
   late QueryDocumentSnapshot<Map<String, dynamic>> books;
@@ -30,6 +33,12 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
   getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     admno = prefs.getString('id');
+  }
+
+  updateReturndate() async {
+    final student =
+        FirebaseFirestore.instance.collection('Students').doc(admno);
+    //  student.update({'returndates': });
   }
 
   @override
@@ -77,66 +86,100 @@ class _ReissueBookScreenState extends State<ReissueBookScreen> {
                               .snapshots(),
                           builder: (context, snapshots) {
                             return (snapshots.connectionState ==
-                                ConnectionState.waiting)
+                                    ConnectionState.waiting)
                                 ? const Center(
-                              child: CircularProgressIndicator(
-                                color: primaryColour,
-                              ),
-                            )
+                                    child: CircularProgressIndicator(
+                                      color: primaryColour,
+                                    ),
+                                  )
                                 : ListView.builder(
-                                itemCount: snapshots.data!.docs.length,
-                                itemBuilder: (context, index) {
-                                  var data = snapshots.data!.docs[index].data()
-                                  as Map<String, dynamic>;
-                                  if (data['admno'] == admno) {
-                                    List l1 = data['bookid'];
-                                    List l2 = data['bookname'];
-                                    List l3 = data['issuedates'];
-                                    List l4 = data['returndates'];
+                                    itemCount: snapshots.data!.docs.length,
+                                    itemBuilder: (context, index) {
+                                      var data = snapshots.data!.docs[index]
+                                          .data() as Map<String, dynamic>;
+                                      if (data['admno'] == admno) {
+                                        List l1 = data['bookid'];
+                                        List l2 = data['bookname'];
+                                        List l3 = data['issuedates'];
+                                        List l4 = data['returndates'];
 
-                                    return Container(
-                                      height: 600,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: ListView.builder(
-                                          itemCount: l1.length,
-                                          itemBuilder: (context, index) {
-                                            DateTime date_issue = l3[index].toDate();
-                                            String issuedate =
-                                                "${date_issue.day}-${date_issue.month}-${date_issue.year}";
-                                            DateTime date_return = l4[index].toDate();
-                                            String returndate =
-                                                "${date_return.day}-${date_return.month}-${date_return.year}";
+                                        final student = FirebaseFirestore
+                                            .instance
+                                            .collection('Students')
+                                            .doc(admno);
 
-                                            return ReissueBookScreenCard(
-                                                isbn: l1[index],
-                                                bookname: l2[index],
-                                                issueDate: issuedate,
-                                                dueDate: returndate,
-                                                ontap: (){
+                                        return Container(
+                                          height: 600,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          child: ListView.builder(
+                                              itemCount: l1.length,
+                                              itemBuilder: (context, index) {
+                                                DateTime date_issue =
+                                                    l3[index].toDate();
+                                                String issuedate =
+                                                    "${date_issue.day}-${date_issue.month}-${date_issue.year}";
+                                                DateTime date_return =
+                                                    l4[index].toDate();
+                                                String returndate =
+                                                    "${date_return.day}-${date_return.month}-${date_return.year}";
 
-                                            },);
-                                          }),
-                                    );
-                                  } else if (index ==
-                                      snapshots.data!.docs.length - 1 &&
-                                      exist == false) {
-                                    return Flexible(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "No isssued books!",
-                                            style: dashboardTextStyle.copyWith(
-                                                fontSize: 14),
+                                                if (dt.isBefore(date_return)) {
+                                                  return ReissueBookScreenCard(
+                                                    isbn: l1[index],
+                                                    bookname: l2[index],
+                                                    issueDate: issuedate,
+                                                    dueDate: i == 0
+                                                        ? returndate
+                                                        : newdate,
+                                                    ontap: () {
+                                                      date_new = date_return
+                                                          .add(const Duration(
+                                                              days: 20));
+                                                      newdate =
+                                                          "${date_new.day}-${date_new.month}-${date_new.year}";
+
+                                                      l4[index] = date_new;
+
+                                                      // print(l4);
+                                                      //
+                                                      // student.update({
+                                                      //   "returndates":
+                                                      //       FieldValue
+                                                      //           .arrayUnion(l4)
+                                                      // });
+
+                                                      setState(
+                                                        () {
+                                                          i++;
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                } else
+                                                  return Container();
+                                              }),
+                                        );
+                                      } else if (index ==
+                                              snapshots.data!.docs.length - 1 &&
+                                          exist == false) {
+                                        return Flexible(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "No isssued books!",
+                                                style: dashboardTextStyle
+                                                    .copyWith(fontSize: 14),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    );
-                                  } else {
-                                    return Container();
-                                  }
-                                });
+                                        );
+                                      } else {
+                                        return Container();
+                                      }
+                                    });
                           },
                         ),
                       ),

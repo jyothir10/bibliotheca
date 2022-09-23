@@ -45,7 +45,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
           .doc(admnocontroller.text);
 
       final student = Student(
-        id: admnocontroller.text.trim(),
+        admno: admnocontroller.text.trim(),
         name: namecontroller.text.trim(),
         branch: branch,
         year: batch,
@@ -351,17 +351,17 @@ class RegistrationScreenState extends State<RegistrationScreen> {
 }
 
 class Student {
-  final String? id, name, branch, year;
+  final String? admno, name, branch, year;
 
   Student({
-    this.id,
+    this.admno,
     this.name,
     this.year,
     this.branch,
   });
 
   Map<String, dynamic> toJson() => {
-        'id': id,
+        'admno': admno,
         'name': name,
         'year': year,
         'branch': branch,
@@ -369,5 +369,6 @@ class Student {
         'bookid': [],
         'bookname': [],
         'issuedates': [],
+        'returndates': [],
       };
 }
