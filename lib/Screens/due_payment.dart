@@ -1,9 +1,11 @@
 import 'dart:math' as math;
+
 import 'package:bibliotheca/Components/FineCard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Components/FineCard.dart';
 import '../constants.dart';
 import 'DashBoardScreen.dart';
@@ -19,7 +21,7 @@ class DuePaymentScreen extends StatefulWidget {
 
 class DuePaymentScreenState extends State<DuePaymentScreen> {
   final _razorpay = Razorpay();
-  var dt =  DateTime.now();
+  var dt = DateTime.now();
 
   @override
   void initState() {
@@ -29,6 +31,7 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     getUser();
   }
+
   var options = {
     'key': 'rzp_test_7oSEtWonPIbah3',
     'amount': 500, //in the smallest currency sub-unit.
@@ -196,7 +199,7 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                                         String returndate =
                                             "${date_return.day}-${date_return.month}-${date_return.year}";
 
-                                        if(dt.isAfter(date_return)) {
+                                        if (dt.isAfter(date_return)) {
                                           var day = dt.difference(date_return);
                                           return FineCard(
                                               isbn: l1[index],
@@ -204,20 +207,28 @@ class DuePaymentScreenState extends State<DuePaymentScreen> {
                                               issuedate: issuedate,
                                               returndate: returndate,
                                               days: day.inDays.toString(),
-                                              fine: day.inDays* 5,   //p
-                                              ontap: () async{
+                                              fine: day.inDays * 5, //p
+                                              ontap: () async {
                                                 var options = {
-                                                  'key': 'rzp_test_7oSEtWonPIbah3',
-                                                  'amount': 500, //in the smallest currency sub-unit.
+                                                  'key':
+                                                      'rzp_test_7oSEtWonPIbah3',
+                                                  'amount': day.inDays *
+                                                      500, //in the smallest currency sub-unit.
                                                   'name': 'Bibliotheca',
                                                   'description': 'Paying Fine',
                                                   'timeout': 300, // in seconds
-                                                  'prefill': {'contact': '', 'email': ''}
+                                                  'prefill': {
+                                                    'contact': '',
+                                                    'email': ''
+                                                  }
                                                 };
                                                 _razorpay.open(options);
-                                                Navigator.pushReplacementNamed(context, DashBoardScreen.id);
+                                                Navigator.pushReplacementNamed(
+                                                    context,
+                                                    DashBoardScreen.id);
                                               });
-                                        }else return Container();
+                                        } else
+                                          return Container();
                                       }),
                                 );
                               } else if (index ==

@@ -3,6 +3,7 @@ import 'package:bibliotheca/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../Components/ib_card.dart';
 
 class IssuedBooks extends StatefulWidget {
@@ -16,6 +17,7 @@ class IssuedBooks extends StatefulWidget {
 class _IssuedBooksState extends State<IssuedBooks> {
   String? admno = "";
   bool exist = false;
+  bool done = false;
   late QueryDocumentSnapshot<Map<String, dynamic>> books;
   List<String> bookids = [];
   List<String> booknames = [];
@@ -82,6 +84,7 @@ class _IssuedBooksState extends State<IssuedBooks> {
                         .collection('Students')
                         .snapshots(),
                     builder: (context, snapshots) {
+                      print(snapshots.data!.docs[1].data());
                       return (snapshots.connectionState ==
                               ConnectionState.waiting)
                           ? const Center(
@@ -125,9 +128,10 @@ class _IssuedBooksState extends State<IssuedBooks> {
                                               returnDate: returndate);
                                         }),
                                   );
-                                } else if (index ==
-                                        snapshots.data!.docs.length - 1 &&
-                                    exist == false) {
+                                } else if ((index ==
+                                            snapshots.data!.docs.length &&
+                                        exist == false) ||
+                                    snapshots.data!.docs.isEmpty) {
                                   return Flexible(
                                     child: Column(
                                       mainAxisAlignment:
@@ -142,6 +146,7 @@ class _IssuedBooksState extends State<IssuedBooks> {
                                     ),
                                   );
                                 } else {
+                                  print(index);
                                   return Container();
                                 }
                               });
