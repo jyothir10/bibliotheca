@@ -18,7 +18,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   DateTime? currentBackPressTime;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
-  Future<bool> onWillPop() {
+  Future<bool> onWillPop() async {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
         now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
@@ -74,10 +74,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     text: "Register",
                     width: MediaQuery.of(context).size.width * .5,
                     onTap: () {
-                      //todo: nav to registering
                       Navigator.pushReplacementNamed(
                           context, RegistrationScreen.id);
-                    }, Colour: 0xff545ad8,
+                    },
+                    Colour: 0xff545ad8,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
